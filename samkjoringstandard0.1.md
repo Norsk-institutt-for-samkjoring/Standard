@@ -19,7 +19,7 @@
 - #any security here? hashed, verfified,? 
 
 
-##Passenger
+## Passenger
 - #passenger@idperson
 - #passenger@name
 - #passenger@mail
@@ -28,19 +28,19 @@
 - #any security here? hashed, verfified,?
 
 
-#From
+# From
 - #fromareaid
 - #fromarealoclat
 - #fromareaname
 - #fromareadistkm -How far away from target
 
-#to
+# to
 - #toareaid
 - #toarealocalat
 - #toareaname
 - #toareadistkm -how far away from target accepted (in km)
 
-#payment
+# payment
 - #paydeal - for deals (company/subscriptions etc)
 - *#paydealtime for time limited
 - *#paydealloc locations based offer
