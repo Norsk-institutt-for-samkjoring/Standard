@@ -1,16 +1,20 @@
 # Standard
-En standard for samkjøring
+The Open Carpool standard
 
-Hjelp oss å lage en standard som samkjøring som kan virke på tvers av alle selskaper som tilbyr dette
+We are trying to make reference/guide standard for carpooling
 
-Alle kan hjelpe her: [Samkjøringstandard](samkjoringstandard0.1.md)
+The standard will remain open for all to use, improve, and implement.
 
-Inspirasjon og lignende: 
-*https://github.com/TOMP-WG/TOMP-API
-*https://github.com/openmobilityfoundation/mobility-data-specification/tree/main#about
+Feel free to help out: [OpenCarPoolStandard](OpenCarPoolStandard0.1.md)
 
-#todo
-- [ ] Finne lisens
-- [ ] begynne på tags
-- [ ] engelsk
+### Inspiration and similar: 
+* https://github.com/TOMP-WG/TOMP-API
+* https://github.com/openmobilityfoundation/mobility-data-specification/tree/main#about
 
+### Todo
+- [ ] Find license (Suggested MIT?)
+- [ ] Create all possible tags
+- [ ] Connect with APIs
+
+### Contributors
+* Norwegian carpool embassy / Norsk institutt for samkjøring
