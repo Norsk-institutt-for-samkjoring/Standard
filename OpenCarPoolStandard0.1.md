@@ -1,4 +1,4 @@
-# Open CarPool Standard **Genral information**
+# Open CarPool Standard **General information**
 
 This document contains specifications to carpooling
 
