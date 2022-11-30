@@ -44,8 +44,8 @@
 
 ## payment
 - #paydeal - for deals (company/subscriptions etc)
-- *#paydealTime - for Time limited
-- *#paydealLoc - Locations based offer
-- *#paydealDist
-- *#paydealPassengerIdlookup
+- #paydealTime - for Time limited
+- #paydealLoc - Locations based offer
+- #paydealDist
+- #paydealPassengerIdlookup
 
