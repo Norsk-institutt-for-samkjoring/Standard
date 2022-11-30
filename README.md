@@ -1,4 +1,4 @@
-#The Open Carpool standard
+# The Open Carpool standard
 
 We are trying to make reference/guide standard for carpooling
 
