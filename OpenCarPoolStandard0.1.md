@@ -1,7 +1,7 @@
 # Standard
 
 
-
+## 
 #Traveler
 #idperson
 #name
@@ -34,11 +34,13 @@
 - #fromareaname
 - #fromareadistkm -How far away from target
 
+
 # to
 - #toareaid
 - #toarealocalat
 - #toareaname
 - #toareadistkm -how far away from target accepted (in km)
+
 
 # payment
 - #paydeal - for deals (company/subscriptions etc)
