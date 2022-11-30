@@ -28,21 +28,21 @@
 - #any security here? hashed, verfified,?
 
 
-# From
+## From
 - #fromAreaId
 - #fromAreaLocLatitude
 - #fromAreaName
 - #fromAreaDistkm -How far away from target
 
 
-# Destination
+## Destination
 - #DestinationAreaId
 - #DestinationAreaLocaLatitude
 - #DestinationAreaName
 - #DestinationAreaDistkm -how far away from target accepted (in km)
 
 
-# payment
+## payment
 - #paydeal - for deals (company/subscriptions etc)
 - *#paydealTime - for Time limited
 - *#paydealLoc - Locations based offer
