@@ -1,10 +1,24 @@
-# Open CarPool Standard
+# Open CarPool Standard **Genral information**
+
+This document contains specifications to carpooling
+
+## Table of Contents
+
+* [User](#user)
+* [Driver](#driver)
+* [Car](#car)
+* [Passenger](#passenger)
+* [From](#from)
+* [Destination](#destination)
+* [Payment](#payment)
 
 
 
-## User
 
- `user`      | Description                                            |
+## user
+
+
+ `User`      | Description                                            |
 | ----------------- | ------------------------------------------------------ |
 | `Traveler`           | Pedal or foot propulsion                               |
 | `#IdUser` | Provides power only alongside human propulsion         |
