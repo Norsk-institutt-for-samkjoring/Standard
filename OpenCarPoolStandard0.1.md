@@ -3,49 +3,49 @@
 
 ## User
 - #Traveler
-- #idperson
-- #name
+- #IdUser
+- #Name
 - #mail
 - #phone
 - #picturelink
 
 ## Driver
-- #driver@idperson
-- #driver@name
+- #driver@IdUser
+- #driver@Name
 - #driver@mail
 - #driver@phone
-- #driver@carsid
+- #driver@carsId
 - #driver@travpicturelink
 - #any security here? hashed, verfified,? 
 
 
 ## Passenger
-- #passenger@idperson
-- #passenger@name
-- #passenger@mail
+- #Passenger@IdUser
+- #Passenger@Name
+- #Passenger@mail
 - #passenge@phone
-- #passenger@travpicturelink
+- #Passenger@travpicturelink
 - #any security here? hashed, verfified,?
 
 
 # From
-- #fromareaid
-- #fromarealoclat
-- #fromareaname
-- #fromareadistkm -How far away from target
+- #fromAreaId
+- #fromAreaLocLatitude
+- #fromAreaName
+- #fromAreaDistkm -How far away from target
 
 
-# to
-- #toareaid
-- #toarealocalat
-- #toareaname
-- #toareadistkm -how far away from target accepted (in km)
+# Destination
+- #DestinationAreaId
+- #DestinationAreaLocaLatitude
+- #DestinationAreaName
+- #DestinationAreaDistkm -how far away from target accepted (in km)
 
 
 # payment
 - #paydeal - for deals (company/subscriptions etc)
-- *#paydealtime for time limited
-- *#paydealloc locations based offer
-- *#paydealdist
-- *#paydealpassengeridlookup
+- *#paydealTime - for Time limited
+- *#paydealLoc - Locations based offer
+- *#paydealDist
+- *#paydealPassengerIdlookup
 
