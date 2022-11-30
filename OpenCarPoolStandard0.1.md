@@ -14,9 +14,18 @@
 - #driver@Name
 - #driver@mail
 - #driver@phone
-- #driver@carsId
+- #driver@carId
 - #driver@travpicturelink
-- #any security here? hashed, verfified,? 
+- #any security here? hashed, verfified, Driving License confirmed? 
+
+### Car
+- #car@color
+- #car@type
+- #car@type@engine
+- #car@insurance
+- #car@capacity
+- #car@capacity@reserved
+- #car@plateID - or other means of verification
 
 
 ## Passenger
