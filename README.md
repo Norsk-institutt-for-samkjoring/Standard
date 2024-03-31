@@ -42,6 +42,7 @@ ridesharing-standard/
 
 
 Code from https://github.com/Norsk-institutt-for-samkjoring/Standard/blob/main/standard02.json
+Work in progress for 0.3, feel free to help out..
 ```
 {
   "ride": {
