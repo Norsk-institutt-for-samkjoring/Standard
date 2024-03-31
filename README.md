@@ -12,7 +12,7 @@ Feel free to help out:~~[OpenCarPoolStandard](OpenCarPoolStandard0.1.md)~~
 * https://github.com/openmobilityfoundation/mobility-data-specification/tree/main#about
 
 ### Todo
-- [ ] Find license (Suggested MIT?)
+- [x] Find license ([MIT](https://github.com/Norsk-institutt-for-samkjoring/Standard/blob/main/LICENSE))
 - [ ] Create all possible tags
 - [ ] Connect with APIs
 
