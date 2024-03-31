@@ -4,8 +4,38 @@ We are trying to make reference/guide standard for carpooling
 
 The standard will remain open for all to use, improve, and implement.
 
-Feel free to help out:~~[OpenCarPoolStandard](OpenCarPoolStandard0.1.md)~~
-                
+Feel free to help out!
+
+
+
+### Example 
+#Ride from the 
+[standard version 0.6](https://github.com/Norsk-institutt-for-samkjoring/Standard/blob/main/OpenCarPoolingStandard.md "OpenCarPoolingstandard")
+
+| Field                | Description                                                                 | Type     |
+|----------------------|-----------------------------------------------------------------------------|----------|
+| `rideId`             | Unique identifier for the ride                                             | `string` |
+| `driverId`           | Unique identifier of the driver                                            | `string` |
+| `carId`              | Unique identifier of the car                                               | `string` |
+| `passengers`         | List of passenger IDs                                                      | `array`  |
+| `state`              | Current state of the ride (e.g., requested, accepted, started, ended)      | `string` |
+| `startTime`          | Start time of the ride (ISO 8601 format)                                   | `string` |
+| `endTime`            | End time of the ride (ISO 8601 format)                                     | `string` |
+| `waypoints`          | List of waypoints for the ride                                             | `array`  |
+| `destination`        | Destination details                                                        | `object` |
+| `payment`            | Payment information for the ride                                           | `object` |
+| `estimatedDuration`  | Estimated duration of the ride in seconds                                  | `number` |
+| `estimatedDistance`  | Estimated distance of the ride in kilometers                               | `number` |
+| `dealsUsed`          | Listed types of deals in use for the current ride                          | `string` |
+| `comments`           | Comments about the ride                                                    | `array`  |
+| `pickupRange`        | Acceptable range for pickup location (in kilometers)                       | `number` |
+| `pickupTimeRange`    | Acceptable time range for pickup (in minutes)                              | `object` |
+| `apps`               | List of apps used by the driver and passengers for the ride                | `array`  |
+| `isPublic`           | Indicates if the ride is public or private                                 | `boolean` |
+| `requestDate`        | Date when the ride was requested (ISO 8601 format)                         | `string` |
+| `rideDate`           | Date of the ride (ISO 8601 format)                                         | `string` |
+
+
 
 ### Inspiration and similar: 
 * https://github.com/TOMP-WG/TOMP-API
@@ -14,151 +44,274 @@ Feel free to help out:~~[OpenCarPoolStandard](OpenCarPoolStandard0.1.md)~~
 ### Todo
 - [x] Find license ([MIT](https://github.com/Norsk-institutt-for-samkjoring/Standard/blob/main/LICENSE))
 - [ ] Create all possible tags
-- [ ] Connect with APIs
+- [x] Connect with APIs
+- [ ] get feedback
 
 ### Contributors
 * Norwegian carpool embassy / Norsk institutt for samkjøring -> with help from AI's
 
 Layout could be like this:
 ```
-ridesharing-standard/
-├── README.md
-├── ride.md
-├── car.md
-├── driver.md
-├── passenger.md
-├── payment.md
-├── examples/
-│   ├── ride_start.json
-│   ├── ride_end.json
-│   └── car_info.json
-└── schemas/
-	├── ride.json
-	├── car.json
-	├── driver.json
-	├── passenger.json
-	└── payment.json
+Open CarPool Standard (v0.6)
+│
+├── README
+├── User
+│   ├── userId
+│   ├── name
+│   ├── phone
+│   ├── email
+│   ├── pictureUrl
+│   ├── language
+│   ├── paymentOptions
+│   ├── groups
+│   ├── companies
+│   ├── rating
+│   ├── deals
+│   ├── defaultApp
+│   └── README
+│
+├── Driver
+│   ├── driverId
+│   ├── userId
+│   ├── name
+│   ├── email
+│   ├── phone
+│   ├── carId
+│   ├── pictureUrl
+│   ├── licenseVerified
+│   ├── rating
+│   └── README
+│
+├── Car
+│   ├── carId
+│   ├── color
+│   ├── type
+│   ├── engine
+│   ├── insurance
+│   ├── capacity
+│   ├── reservedCapacity
+│   ├── plateId
+│   ├── amenities
+│   └── README
+│
+├── Passenger
+│   ├── passengerId
+│   ├── userId
+│   ├── name
+│   ├── email
+│   ├── phone
+│   ├── pictureUrl
+│   ├── luggage
+│   └── README
+│
+├── Ride
+│   ├── rideId
+│   ├── driverId
+│   ├── carId
+│   ├── passengers
+│   ├── state
+│   ├── startTime
+│   ├── endTime
+│   ├── waypoints
+│   ├── destination
+│   ├── payment
+│   ├── estimatedDuration
+│   ├── estimatedDistance
+│   ├── dealsUsed
+│   ├── comments
+│   ├── pickupRange
+│   ├── pickupTimeRange
+│   ├── apps
+│   ├── isPublic
+│   ├── requestDate
+│   └── rideDate
+│
+├── Waypoint
+│   ├── waypointId
+│   ├── name
+│   ├── latitude
+│   ├── longitude
+│   ├── localNames
+│   ├── slangNames
+│   ├── fuzzyPickup
+│   ├── pickupTime
+│   ├── country
+│   └── pickupComments
+│
+├── Destination
+│   ├── destinationId
+│   ├── name
+│   ├── latitude
+│   ├── longitude
+│   ├── localNames
+│   ├── slangNames
+│   ├── country
+│   ├── distanceKm
+│   └── destiComments
+│
+├── Payment
+│   ├── paymentOptions
+│   ├── deals
+│   ├── dealTime
+│   ├── dealLocation
+│   ├── dealDistance
+│   └── passengerIdLookup
+│
+├── Language
+│   ├── preference
+│   ├── name
+│   └── nativeName
+│
+├── Groups_and_Companies
+│   ├── companyId
+│   ├── name
+│   ├── deals
+│   ├── groupId
+│   ├── type
+│   └── README
+│
+├── API
+│   ├── API@Integration
+│   ├── API@Endpoints
+│   ├── API@Authentication
+│   ├── users
+│   ├── drivers
+│   ├── cars
+│   ├── rides
+│   ├── waypoints
+│   ├── destinations
+│   ├── payments
+│   └── README
+│
+└── LICENSE
+
 ```
 
 
-Code from https://github.com/Norsk-institutt-for-samkjoring/Standard/blob/main/standard02.json
-Work in progress for 0.3, feel free to help out..
+
 ```
-{
-  "ride": {
-    "ride_id": "string",
-    "start_time": "string",
-    "end_time": "string",
-    "start_location": {
-      "latitude": "number",
-      "longitude": "number"
-    },
-    "end_location": {
-      "latitude": "number",
-      "longitude": "number"
-    },
-    "estimated_duration": "number",
-    "estimated_distance": "number",
-    "actual_duration": "number",
-    "actual_distance": "number",
-    "driver_id": "string",
-    "car_id": "string",
-    "passengers": [
-      {
-        "passenger_id": "string",
-        "seat_number": "number"
-      }
-    ],
-    "status": "string",
-    "fare": {
-      "base_fare": "number",
-      "distance_fare": "number",
-      "time_fare": "number",
-      "surge_multiplier": "number",
-      "total_fare": "number"
-    }
-  },
-  "car": {
-    "car_id": "string",
-    "make": "string",
-    "model": "string",
-    "year": "number",
-    "color": "string",
-    "license_plate": "string",
-    "capacity": "number",
-    "amenities": [
-      "string"
-    ]
-  },
-  "driver": {
-    "driver_id": "string",
-    "name": "string",
-    "contact_details": {
-      "phone": "string",
-      "email": "string"
-    },
-    "profile_picture": "string",
-    "license_number": "string",
-    "background_check": "boolean",
-    "ratings": {
-      "average_rating": "number",
-      "total_ratings": "number"
-    },
-    "reviews": [
-      {
-        "passenger_id": "string",
-        "rating": "number",
-        "comment": "string"
-      }
-    ]
-  },
-  "passenger": {
-    "passenger_id": "string",
-    "name": "string",
-    "contact_details": {
-      "phone": "string",
-      "email": "string"
-    },
-    "preferences": {
-      "car_type": "string",
-      "chat_availability": "boolean"
-    },
-    "ratings": {
-      "average_rating": "number",
-      "total_ratings": "number"
-    },
-    "reviews": [
-      {
-        "driver_id": "string",
-        "rating": "number",
-        "comment": "string"
-      }
-    ]
-  },
-  "payment": {
-    "payment_id": "string",
-    "ride_id": "string",
-    "passenger_id": "string",
-    "payment_method": "string",
-    "fare_breakdown": {
-      "base_fare": "number",
-      "distance_fare": "number",
-      "time_fare": "number",
-      "surge_multiplier": "number",
-      "total_fare": "number"
-    },
-    "status": "string"
-  }
-}
+class Ride:
+    def __init__(self, ride_id, driver_id, car_id, passengers, state, start_time, end_time, waypoints, destination, payment, estimated_duration, estimated_distance, deals_used, comments, pickup_range, pickup_time_range, apps, is_public, request_date, ride_date):
+        self.ride_id = ride_id
+        self.driver_id = driver_id
+        self.car_id = car_id
+        self.passengers = passengers
+        self.state = state
+        self.start_time = start_time
+        self.end_time = end_time
+        self.waypoints = waypoints
+        self.destination = destination
+        self.payment = payment
+        self.estimated_duration = estimated_duration
+        self.estimated_distance = estimated_distance
+        self.deals_used = deals_used
+        self.comments = comments
+        self.pickup_range = pickup_range
+        self.pickup_time_range = pickup_time_range
+        self.apps = apps
+        self.is_public = is_public
+        self.request_date = request_date
+        self.ride_date = ride_date
+
+# Example usage:
+ride = Ride(
+    ride_id="123456",
+    driver_id="789012",
+    car_id="345678",
+    passengers=["passenger1", "passenger2"],
+    state="requested",
+    start_time="2024-04-01T08:00:00Z",
+    end_time="2024-04-01T10:00:00Z",
+    waypoints=["waypoint1", "waypoint2"],
+    destination={"destinationId": "789", "name": "Destination Name", "latitude": 123.456, "longitude": -78.901, "country": "Country Name", "distanceKm": 10.5},
+    payment={"paymentId": "123", "amount": 25.0, "currency": "USD"},
+    estimated_duration=7200,
+    estimated_distance=50,
+    deals_used=["deal1", "deal2"],
+    comments=["Comment 1", "Comment 2"],
+    pickup_range=5.0,
+    pickup_time_range={"start": "2024-04-01T07:45:00Z", "end": "2024-04-01T08:15:00Z"},
+    apps=["app1", "app2"],
+    is_public=True,
+    request_date="2024-03-31T12:00:00Z",
+    ride_date="2024-04-01T08:00:00Z"
+)
+
 ```
+
+## Code Components
 
 This code file includes the following components:
-```
-ride: Represents a single ridesharing trip, including details such as ride ID, start and end times, locations, estimated and actual duration and distance, driver and car information, passenger details, ride status, and fare breakdown.
-car: Contains information about the car used for the ride, including car ID, make, model, year, color, license plate, seating capacity, and available amenities.
-driver: Represents the driver of the ridesharing car, including driver ID, name, contact details, profile picture, license number, background check status, ratings, and reviews.
-passenger: Represents a passenger in the ridesharing car, including passenger ID, name, contact details, preferences (e.g., preferred car type, chat availability), ratings, and reviews.
-payment: Contains payment information for the ride, including payment
-```
+
+### ride
+
+Represents a single ridesharing trip, including details such as:
+- Ride ID
+- Start and end times
+- Locations
+- Estimated and actual duration and distance
+- Driver and car information
+- Passenger details
+- Ride status
+- Fare breakdown
+- Comments
+
+### car
+
+Contains information about the car used for the ride, including:
+- Car ID
+- Make, model, year
+- Color
+- License plate
+- Seating capacity
+- Reserved capacity for the driver
+- Available amenities
+- Insurance details
+
+### driver
+
+Represents the driver of the ridesharing car, including:
+- Driver ID
+- User ID associated with the driver
+- Name
+- Contact details
+- Profile picture URL
+- License verification status
+- Ratings
+
+### passenger
+
+Represents a passenger in the ridesharing car, including:
+- Passenger ID
+- User ID associated with the passenger
+- Name
+- Contact details
+- Profile picture URL
+- Luggage details
+- Ratings
+
+### payment
+
+Contains payment information for the ride, including:
+- Payment options
+- Deals or promotions
+- Time-limited deals
+- Location-based deals
+- Distance-based deals
+- Passenger-specific deals
+
+Additionally, it provides API endpoints for managing:
+- Users
+- Drivers
+- Cars
+- Rides
+- Waypoints
+- Destinations
+- Payments
+- Languages
+- Groups and companies
+
+
+Additionally, it provides API endpoints for managing users, drivers, cars, rides, waypoints, destinations, payments, languages, groups and companies.
 
 
