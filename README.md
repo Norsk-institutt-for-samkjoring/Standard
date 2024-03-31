@@ -4,7 +4,7 @@ We are trying to make reference/guide standard for carpooling
 
 The standard will remain open for all to use, improve, and implement.
 
-Feel free to help out:~~ [OpenCarPoolStandard](OpenCarPoolStandard0.1.md)~~
+Feel free to help out:~~[OpenCarPoolStandard](OpenCarPoolStandard0.1.md)~~
                 
 
 ### Inspiration and similar: 
@@ -18,6 +18,27 @@ Feel free to help out:~~ [OpenCarPoolStandard](OpenCarPoolStandard0.1.md)~~
 
 ### Contributors
 * Norwegian carpool embassy / Norsk institutt for samkjøring -> with help from AI's
+
+Layout could be like this:
+```
+ridesharing-standard/
+├── README.md
+├── ride.md
+├── car.md
+├── driver.md
+├── passenger.md
+├── payment.md
+├── examples/
+│   ├── ride_start.json
+│   ├── ride_end.json
+│   └── car_info.json
+└── schemas/
+	├── ride.json
+	├── car.json
+	├── driver.json
+	├── passenger.json
+	└── payment.json
+```
 
 
 Code from https://github.com/Norsk-institutt-for-samkjoring/Standard/blob/main/standard02.json
@@ -129,3 +150,14 @@ Code from https://github.com/Norsk-institutt-for-samkjoring/Standard/blob/main/s
   }
 }
 ```
+
+This code file includes the following components:
+```
+ride: Represents a single ridesharing trip, including details such as ride ID, start and end times, locations, estimated and actual duration and distance, driver and car information, passenger details, ride status, and fare breakdown.
+car: Contains information about the car used for the ride, including car ID, make, model, year, color, license plate, seating capacity, and available amenities.
+driver: Represents the driver of the ridesharing car, including driver ID, name, contact details, profile picture, license number, background check status, ratings, and reviews.
+passenger: Represents a passenger in the ridesharing car, including passenger ID, name, contact details, preferences (e.g., preferred car type, chat availability), ratings, and reviews.
+payment: Contains payment information for the ride, including payment
+```
+
+
