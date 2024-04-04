@@ -1,8 +1,9 @@
 # Open CarPool Standard
 
 **General information**
-Version: 0.7
+Version: 0.8
 Work in progress, feel free to add
+
 This document contains specifications for carpooling.
 
 ## Table of Contents
@@ -17,6 +18,16 @@ This document contains specifications for carpooling.
 * [Language](#language)
 * [Groups and Companies](#groups-and-companies)
 * [API](#api)
+* [Internationalization](#internationalization)
+* [Extensions](#extensions)
+* [Security and Privacy](#security-and-privacy)
+* [Real-time Updates](#real-time-updates)
+* [Geospatial](#geospatial)
+* [Analytics and Reporting](#analytics-and-reporting)
+* [Integration](#integration)
+* [Developer Resources](#developer-resources)
+* [Versioning](#versioning)
+* [Certification and Compliance](#certification-and-compliance)
 
 ### User
 Information about the users
@@ -29,6 +40,7 @@ Information about the users
 | `phone`              | Phone number(s) of the user                                                | `string` |
 | `pictureUrl`         | URL to the user's profile picture (protected)                              | `string` |
 | `language`           | User's preferred language (ISO 639-1)                                      | `string` |
+| `locale`             | User's locale for formatting dates, times, and currencies                  | `string` |
 | `accessibilityNeeds` | User's accessibility needs (e.g., wheelchair access)                       | `array`  |
 | `paymentOptions`     | User's preferred payment options (e.g., credit card, PayPal)               | `array`  |
 | `groups`             | List of group IDs the user belongs to                                      | `array`  |
@@ -36,6 +48,7 @@ Information about the users
 | `rating`             | User's rating                                                              | `number` |
 | `deals`              | List of active deal IDs for the user                                       | `array`  |
 | `defaultApp`         | User's default carpooling app                                              | `string` |
+| `customFields`       | Custom fields for extending user information                               | `object` |
 
 [top](#table-of-contents)
 
@@ -47,6 +60,7 @@ Information about the driver
 | `driverId`           | Unique identifier for the driver                                           | `string` |
 | `userId`             | Unique identifier of the user associated with the driver                   | `string` |
 | `licenseVerified`    | Indicates if the driver's license has been verified                        | `boolean` |
+| `customFields`       | Custom fields for extending driver information                             | `object` |
 
 [top](#table-of-contents)
 
@@ -62,9 +76,10 @@ Information about the driver
 | `insurance`          | Insurance information for the car                                          | `object` |
 | `capacity`           | Total capacity of the car, including the driver                            | `number` |
 | `reservedCapacity`   | Number of seats reserved for the driver (should be 1 for non-autonomous cars) | `number` |
-| `carpicture`   | URL to picture of the car) | `string` |
+| `carPicture`         | URL to a picture of the car                                                | `string` |
 | `plateId`            | License plate number or other means of verification                        | `string` |
 | `amenities`          | List of amenities available in the car (e.g., air conditioning, Wi-Fi, child seat) | `array`  |
+| `customFields`       | Custom fields for extending car information                                | `object` |
 
 [top](#table-of-contents)
 
@@ -76,6 +91,7 @@ Could be multiple passengers
 | `passengerId`        | Unique identifier for the passenger                                        | `string` |
 | `userId`             | Unique identifier of the user associated with the passenger                | `string` |
 | `luggage`            | Information about the passenger's luggage (e.g., number of bags, size)     | `object` |
+| `customFields`       | Custom fields for extending passenger information  `object` |
 
 [top](#table-of-contents)
 
@@ -103,6 +119,7 @@ Could be multiple passengers
 | `isPublic`           | Indicates if the ride is public or private                                 | `boolean` |
 | `requestDate`        | Date when the ride was requested (ISO 8601 format)                         | `string` |
 | `rideDate`           | Date of the ride (ISO 8601 format)                                         | `string` |
+| `customFields`       | Custom fields for extending ride information                               | `object` |
 
 [top](#table-of-contents)
 
@@ -116,7 +133,8 @@ Could be multiple passengers
 | `longitude`          | Longitude of the waypoint                                                  | `number` |
 | `localNames`         | List of local names or slang for the waypoint                              | `array`  |
 | `country`            | Country of the waypoint                                                    | `string` |
-| `pickupComments`         | Comments about the waypoint                                    | `array` |
+| `pickupComments`     | Comments about the waypoint                                                | `array`  |
+| `customFields`       | Custom fields for extending waypoint information                           | `object` |
 
 [top](#table-of-contents)
 
@@ -131,20 +149,22 @@ Could be multiple passengers
 | `localNames`         | List of local names or slang for the destination                           | `array`  |
 | `country`            | Country of the destination                                                 | `string` |
 | `distanceKm`         | Distance from the destination location                                     | `number` |
-| `destiComments`         | Comments about the destination                                    | `array` |
+| `destinationComments`  | Comments about the destination                                             | `array`  |
+| `customFields`       | Custom fields for extending destination information                        | `object` |
 
 [top](#table-of-contents)
 
 ### Payment
 List of payment options for the service
 
-| Field                | Description          | Type     |
+| Field                | Description                                                                 | Type     |
 |----------------------|-----------------------------------------------------------------------------|----------|
 | `paymentId`          | Unique identifier for the payment                                          | `string` |
 | `rideId`             | Unique identifier of the associated ride                                   | `string` |
 | `paymentOptions`     | Available payment options (e.g., credit card, PayPal, cash)                | `array`  |
-| `dealIds`            | List of deal IDs applied to the payment, passenger-specific deals, location, time or distance based promotions                                    | `array`  |
+| `dealIds`            | List of deal IDs applied to the payment, passenger-specific deals, location, time or distance based promotions | `array`  |
 | `status`             | Status of the payment (e.g., pending, completed, failed)                   | `enum`   |
+| `customFields`       | Custom fields for extending payment information                            | `object` |
 
 [top](#table-of-contents)
 
@@ -168,12 +188,14 @@ Information about user groups and associated companies
 | `name`               | Name of the group                                                          | `string` |
 | `type`               | Type of the group (e.g., public, private, hidden)                          | `enum`   |
 | `dealIds`            | List of deal IDs available to group members                                | `array`  |
+| `customFields`       | Custom fields for extending group information                              | `object` |
 
 | Field                | Description                                                                 | Type     |
 |----------------------|-----------------------------------------------------------------------------|----------|
 | `companyId`          | Unique identifier for the company                                          | `string` |
 | `name`               | Name of the company                                                        | `string` |
 | `dealIds`            | List of deal IDs available to employees of the company                     | `array`  |
+| `customFields`       | Custom fields for extending company information                            | `object` |
 
 [top](#table-of-contents)
 
@@ -182,9 +204,9 @@ Information about the API endpoints and their functionality
 
 | Endpoint             | Method    | Description                                                                 | Type     |
 |----------------------|-----------|-----------------------------------------------------------------------------|----------|
-| `API@Integration`         | `Text`    | Integration with third-party APIs                                     |
-| `API@Endpoints`     | `Text`    | List of available endpoints                                                 |
-| `API@Authentication`  | `Text`  | Authentication methods    
+| `API@Integration`    | `Text`   |Integration with third-party APIs                                     | 
+| `API@Endpoints`      |`Text`   | List of available endpoints                                                 | 
+| `API@Authentication` | `Text`   |Authentication methods                                                      | 
 | `/v1/users`          | `GET`     | Retrieve a list of users (paginated, filterable, sortable)                 |          |
 | `/v1/users`          | `POST`    | Create a new user                                                          |          |
 | `/v1/users/{userId}` | `GET`     | Retrieve a specific user by ID                                             |          |
@@ -192,7 +214,7 @@ Information about the API endpoints and their functionality
 | `/v1/users/{userId}` | `DELETE`  | Delete a specific user by ID                                               |          |
 | `/v1/drivers`        | `GET`     | Retrieve a list of drivers (paginated, filterable, sortable)               |          |
 | `/v1/drivers`        | `POST`    | Create a new driver                                                        |          |
-| `/v1/drivers/{driverId}` | `GET`     | Retrieve a specific driver by ID                                       |          |
+| `/v1/drivers/{driverId}` | `GET`     | Retrieve a specific driverby ID                                       |          |
 | `/v1/drivers/{driverId}` | `PUT`     | Update a specific driver by ID                                         |          |
 | `/v1/drivers/{driverId}` | `DELETE`  | Delete a specific driver by ID                                         |          |
 | `/v1/cars`           | `GET`     | Retrieve a list of cars (paginated, filterable, sortable)                  |          |
@@ -225,10 +247,60 @@ Note: All endpoints should implement proper authentication, authorization, and s
 
 [top](#table-of-contents)
 
-This concludes the updated version of the Open CarPool Standard (v0.7) 
-The standard now includes normalized data structures, enhanced data integrity, improved object relationships, accessibility and privacy considerations, and API design improvements.
+## OTHERS
+
+
+### Internationalization
+- Support multiple languages and locales for user-facing content
+- Allow customization of date and time formats, currency, and units of measurement based on the user's locale
+- Provide translations for error messages and API responses
+
+### Extensions
+- Allow developers to extend the standard by adding custom fields or objects to accommodate specific use cases or regional requirements
+- Provide a mechanism for developers to define custom validation rules and constraints for their extensions
+
+### Securityand Privacy
+- Implement strong authentication and authorization mechanisms, such as OAuth 2.0 or JWT, to ensure secure access to the API
+- Use encryption for sensitive data transmission and storage, such as HTTPS for API communication and encryption at rest for stored data
+- Adhere to privacy regulations like GDPR and CCPA, and provide clear guidelines for handling user data and obtaining user consent
+
+### Real-time Updates
+- Include support for real-time updates and notifications, such as WebSocket or server-sent events, to enable live tracking of rides, driver locations, and status changes
+- Provide push notifications for important events, such as ride requests, acceptances, and cancellations
+
+### Geospatial
+- Incorporate geospatial data types and queries to support location-based services and searches
+- Provide APIs for geocoding, reverse geocoding, and distance calculations based on user locations and destinations
+
+### Analytics and Reporting
+- Include endpoints and data structures for capturing and analyzing usage metrics, such as ride counts, popular routes, and user demographics
+- Provide APIs for generating reports and dashboards to help developers and businesses gain insights into their carpooling services
+
+### Integration
+- Offer integration points with popular mapping and navigation services, such as Google Maps or OpenStreetMap, to provide accurate and up-to-date routing information
+- Allow integration with payment gateways and providers to facilitate seamless and secure payment processing
+
+### Developer Resources
+- Provide comprehensive documentation, including API references, tutorials, and code samples, to help developers quickly understand and adopt the standard
+- Establish a developer community forum or platform where developers can ask questions, share experiences, and collaborate on projects related to the standard
+
+### Versioning
+- Implement a clear versioning strategy for the API, following semantic versioning principles, to manage changes and ensure backward compatibility
+- Provide migration guides and deprecation policies to help developers transition smoothly between versions
+
+### Certification and Compliance
+- Establish a certification program or compliance guidelines to ensure that implementations adhere to the standard and maintain a high level of quality and interoperability
+- Offer a testing suite or validation tools to help developers verify their implementations against the standard
+
+[top](#table-of-contents)
+
+This concludes the updated version of the Open CarPool Standard (v0.8).
+The standard now includes additional improvements to make it more attractive and developer-friendly for worldwide adoption.
 
 MIT License 2024 Norwegian Carpooling Embassy
+```
 
-                                                      
+These enhancements aim to make the Open CarPool Standard more comprehensive, flexible, and appealing to developers globally. By addressing aspects such as internationalization, extensibility, security, real-time updates, geospatial capabilities, analytics, integration, developer resources, versioning, and certification, the standard becomes a robust foundation for building interoperable and feature-rich carpooling applications.
+
+
 
