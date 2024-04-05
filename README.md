@@ -40,6 +40,7 @@ Feel free to help out!
 ### Inspiration and similar: 
 * https://github.com/TOMP-WG/TOMP-API
 * https://github.com/openmobilityfoundation/mobility-data-specification/tree/main#about
+* https://github.com/mitfahrverband/mitfahr-api
 
 ### Todo
 - [x] Find license ([MIT](https://github.com/Norsk-institutt-for-samkjoring/Standard/blob/main/LICENSE))
