@@ -73,6 +73,7 @@ Information about the driver
 | `color`              | Color of the car                                                           | `string` |
 | `type`               | Type of the car (e.g., sedan, SUV, electric, hybrid)                       | `enum`   |
 | `engine`             | Type of propulsion (e.g., gasoline, electric, hybrid)                      | `enum`   |
+| `carpos`             | Car or drivers position for dynamic matching, or show on map(like waze)     | `string`   |
 | `insurance`          | Insurance information for the car                                          | `object` |
 | `capacity`           | Total capacity of the car, including the driver                            | `number` |
 | `reservedCapacity`   | Number of seats reserved for the driver (should be 1 for non-autonomous cars) | `number` |
@@ -91,7 +92,10 @@ Could be multiple passengers
 | `passengerId`        | Unique identifier for the passenger                                        | `string` |
 | `userId`             | Unique identifier of the user associated with the passenger                | `string` |
 | `luggage`            | Information about the passenger's luggage (e.g., number of bags, size)     | `object` |
-| `customFields`       | Custom fields for extending passenger information  `object` |
+| `passposs`       | passengers position for dynamic matching, or on map(Like Waze) , could be time coded also, and a way to turn on/off                 | `string` |
+| `customFields`       | Custom fields for extending passenger information                           | `object` |
+
+
 
 [top](#table-of-contents)
 
@@ -131,6 +135,7 @@ Could be multiple passengers
 | `name`               | Name of the waypoint                                                       | `string` |
 | `latitude`           | Latitude of the waypoint                                                   | `number` |
 | `longitude`          | Longitude of the waypoint                                                  | `number` |
+| `via waypoint`       | allowing for passenger or driver to set via points                        | `string` |
 | `localNames`         | List of local names or slang for the waypoint                              | `array`  |
 | `country`            | Country of the waypoint                                                    | `string` |
 | `pickupComments`     | Comments about the waypoint                                                | `array`  |
@@ -242,6 +247,9 @@ Information about the API endpoints and their functionality
 | `/v1/payments/{paymentId}` | `GET`     | Retrieve a specific payment by ID                                    |          |
 | `/v1/payments/{paymentId}` | `PUT`     | Update a specific payment by ID                                        |          |
 | `/v1/payments/{paymentId}` | `DELETE`  | Delete a specific payment by ID                                        |          |
+| `/v1/PTA/{gtfs}` | `GET`     | Return GTFS Feed for current region                                |          |
+| `/v1/PTA/{gtfs-RT}` | `GET`     | Return GTFS-RT Feed for this region                                       |          |
+| `/v1/PTA/{list}` | `GET`  | Return closest PTA offers (stop or vehicle)                                        |          |
 
 Note: All endpoints should implement proper authentication, authorization, and security measures. Error handling and documentation should be provided for each endpoint. Pagination, filtering, and sorting should be supported where applicable.
 
@@ -280,6 +288,10 @@ Note: All endpoints should implement proper authentication, authorization, and s
 - Offer integration points with popular mapping and navigation services, such as Google Maps or OpenStreetMap, to provide accurate and up-to-date routing information
 - Allow integration with payment gateways and providers to facilitate seamless and secure payment processing
 
+### Integration with Public Transport:
+- Standards should support integration with public transport systems, allowing users to combine carpooling with other modes of transportation.
+- Public transport companies should be able to make API requests to obtain match results for specific trips, including path, time, and additional information.
+
 ### Developer Resources
 - Provide comprehensive documentation, including API references, tutorials, and code samples, to help developers quickly understand and adopt the standard
 - Establish a developer community forum or platform where developers can ask questions, share experiences, and collaborate on projects related to the standard
@@ -294,7 +306,7 @@ Note: All endpoints should implement proper authentication, authorization, and s
 
 [top](#table-of-contents)
 
-This concludes the updated version of the Open CarPool Standard (v0.8).
+This includes the updated version of the Open CarPool Standard (v0.8).
 The standard now includes additional improvements to make it more attractive and developer-friendly for worldwide adoption.
 
 MIT License 2024 Norwegian Carpooling Embassy
