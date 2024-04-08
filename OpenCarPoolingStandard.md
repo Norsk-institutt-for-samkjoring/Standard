@@ -310,5 +310,6 @@ This includes the updated version of the Open CarPool Standard (v0.8).
 The standard now includes additional improvements to make it more attractive and developer-friendly for worldwide adoption.
 
 MIT License 2024 Norwegian Carpooling Embassy
-```
+
+
 These enhancements aim to make the Open CarPool Standard more comprehensive, flexible, and appealing to developers globally. By addressing aspects such as internationalization, extensibility, security, real-time updates, geospatial capabilities, analytics, integration, developer resources, versioning, and certification, the standard becomes a robust foundation for building interoperable and feature-rich carpooling applications.
