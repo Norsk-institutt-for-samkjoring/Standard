@@ -9,7 +9,7 @@ This document contains specifications for carpooling.
 ## Table of Contents
 * [User](#user)
 * [Driver](#driver)
-* [Car](#car)
+* [Vehicle](#vehicle)
 * [Passenger](#passenger)
 * [Ride](#ride)
 * [Waypoint](#waypoint)
@@ -64,22 +64,22 @@ Information about the driver
 
 [top](#table-of-contents)
 
-### Car
+### Vehicle
 
 | Field                | Description                                                                 | Type     |
 |----------------------|-----------------------------------------------------------------------------|----------|
-| `carId`              | Unique identifier for the car                                              | `string` |
-| `driverId`           | Unique identifier of the driver associated with the car                    | `string` |
-| `color`              | Color of the car                                                           | `string` |
-| `type`               | Type of the car (e.g., sedan, SUV, electric, hybrid)                       | `enum`   |
-| `engine`             | Type of propulsion (e.g., gasoline, electric, hybrid)                      | `enum`   |
-| `carpos`             | Car or drivers position for dynamic matching, or show on map(like waze)     | `string`   |
-| `insurance`          | Insurance information for the car                                          | `object` |
-| `capacity`           | Total capacity of the car, including the driver                            | `number` |
+| `vehicleId`              | Unique identifier for the vehicle                                             | `string` |
+| `driverId`           | Unique identifier of the driver associated with the vehicle                   | `string` |
+| `color`              | Color of the vehicle                                                           | `string` |
+| `type`               | Type of vehicle (e.g., sedan, SUV, electric, hybrid, bike, helikopter,)                       | `enum`   |
+| `engine`             | Type of propulsion (e.g., gasoline, electric, hybrid, human, )                      | `enum`   |
+| `vehiclepos`             | vehicle or drivers position for dynamic matching, or show on map(like waze)     | `string`   |
+| `insurance`          | Insurance information for the vehicle                                          | `object` |
+| `capacity`           | Total capacity of the vehicle, including the driver                            | `number` |
 | `reservedCapacity`   | Number of seats reserved for the driver (should be 1 for non-autonomous cars) | `number` |
-| `carPicture`         | URL to a picture of the car                                                | `string` |
+| `carPicture`         | URL to a picture of the vehicle                                                | `string` |
 | `plateId`            | License plate number or other means of verification                        | `string` |
-| `amenities`          | List of amenities available in the car (e.g., air conditioning, Wi-Fi, child seat) | `array`  |
+| `amenities`          | List of amenities available in the vehicle (e.g., air conditioning, Wi-Fi, child seat) | `array`  |
 | `customFields`       | Custom fields for extending car information                                | `object` |
 
 [top](#table-of-contents)
@@ -105,7 +105,7 @@ Could be multiple passengers
 |----------------------|-----------------------------------------------------------------------------|----------|
 | `rideId`             | Unique identifier for the ride                                             | `string` |
 | `driverId`           | Unique identifier of the driver                                            | `string` |
-| `carId`              | Unique identifier of the car                                               | `string` |
+| `vehicleId`          | Unique identifier of the vehicle                                               | `string` |
 | `passengerIds`       | List of passenger IDs                                                      | `array`  |
 | `state`              | Current state of the ride (e.g., requested, accepted, started, ended)      | `enum`   |
 | `startTime`          | Start time of the ride (ISO 8601 format)                                   | `string` |
@@ -124,6 +124,9 @@ Could be multiple passengers
 | `requestDate`        | Date when the ride was requested (ISO 8601 format)                         | `string` |
 | `rideDate`           | Date of the ride (ISO 8601 format)                                         | `string` |
 | `customFields`       | Custom fields for extending ride information                               | `object` |
+| `qrCode`       | QR code for joining the ride, also with timestamp started                       | `string` |
+
+
 
 [top](#table-of-contents)
 
