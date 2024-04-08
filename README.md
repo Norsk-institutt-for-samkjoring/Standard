@@ -44,6 +44,7 @@ Feel free to help out!
 * https://github.com/TOMP-WG/TOMP-API
 * https://github.com/openmobilityfoundation/mobility-data-specification/tree/main#about
 * https://github.com/mitfahrverband/mitfahr-api
+* https://github.com/mfdz/amarillo
 
 ### Todo
 - [x] Find license ([MIT](https://github.com/Norsk-institutt-for-samkjoring/Standard/blob/main/LICENSE))
