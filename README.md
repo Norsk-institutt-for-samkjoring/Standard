@@ -242,79 +242,31 @@ ride = Ride(
     ride_date="2024-04-01T08:00:00Z"
 )
 
-```
+```## Code Components
 
-## Code Components
+This document contains specifications for carpooling. 
 
-This code file includes the following components:
-
-### ride
-
-Represents a single ridesharing trip, including details such as:
-- Ride ID
-- Start and end times
-- Locations
-- Estimated and actual duration and distance
-- Driver and car information
-- Passenger details
-- Ride status
-- Fare breakdown
-- Comments
-
-### car
-
-Contains information about the car used for the ride, including:
-- Car ID
-- Make, model, year
-- Color
-- License plate
-- Seating capacity
-- Reserved capacity for the driver
-- Available amenities
-- Insurance details
-
-### driver
-
-Represents the driver of the ridesharing car, including:
-- Driver ID
-- User ID associated with the driver
-- Name
-- Contact details
-- Profile picture URL
-- License verification status
-- Ratings
-
-### passenger
-
-Represents a passenger in the ridesharing car, including:
-- Passenger ID
-- User ID associated with the passenger
-- Name
-- Contact details
-- Profile picture URL
-- Luggage details
-- Ratings
-
-### payment
-
-Contains payment information for the ride, including:
-- Payment options
-- Deals or promotions
-- Time-limited deals
-- Location-based deals
-- Distance-based deals
-- Passenger-specific deals
-
-Additionally, it provides API endpoints for managing:
-- Users
-- Drivers
-- Cars
-- Rides
-- Waypoints
-- Destinations
-- Payments
-- Languages
-- Groups and companies
+- User
+- Driver
+- Car
+- Passenger
+- Ride
+- Waypoint
+- Destination
+- Payment
+- Language
+- Groups and Companies
+- API
+- Internationalization
+- Extensions
+- Security and Privacy
+- Real-time Updates
+- Geospatial
+- Analytics and Reporting
+- Integration
+- Developer Resources
+- Versioning
+- Certification and Compliance
 
 
 Additionally, it provides API endpoints for managing users, drivers, cars, rides, waypoints, destinations, payments, languages, groups and companies.
