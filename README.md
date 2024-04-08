@@ -10,30 +10,33 @@ Feel free to help out!
 
 ### Example 
 #Ride from the 
-[standard version 0.6](https://github.com/Norsk-institutt-for-samkjoring/Standard/blob/main/OpenCarPoolingStandard.md "OpenCarPoolingstandard")
+~~standard version 0.6~~ [Version 8 WIP](https://github.com/Norsk-institutt-for-samkjoring/Standard/blob/main/OpenCarPoolingStandard.md "OpenCarPoolingstandard")
+
+### Ride
 
 | Field                | Description                                                                 | Type     |
 |----------------------|-----------------------------------------------------------------------------|----------|
 | `rideId`             | Unique identifier for the ride                                             | `string` |
 | `driverId`           | Unique identifier of the driver                                            | `string` |
 | `carId`              | Unique identifier of the car                                               | `string` |
-| `passengers`         | List of passenger IDs                                                      | `array`  |
-| `state`              | Current state of the ride (e.g., requested, accepted, started, ended)      | `string` |
+| `passengerIds`       | List of passenger IDs                                                      | `array`  |
+| `state`              | Current state of the ride (e.g., requested, accepted, started, ended)      | `enum`   |
 | `startTime`          | Start time of the ride (ISO 8601 format)                                   | `string` |
 | `endTime`            | End time of the ride (ISO 8601 format)                                     | `string` |
-| `waypoints`          | List of waypoints for the ride                                             | `array`  |
-| `destination`        | Destination details                                                        | `object` |
-| `payment`            | Payment information for the ride                                           | `object` |
+| `waypointIds`        | List of waypoint IDs for the ride                                          | `array`  |
+| `destinationId`      | Destination ID                                                             | `string` |
+| `paymentId`          | Payment ID for the ride                                                    | `string` |
 | `estimatedDuration`  | Estimated duration of the ride in seconds                                  | `number` |
 | `estimatedDistance`  | Estimated distance of the ride in kilometers                               | `number` |
-| `dealsUsed`          | Listed types of deals in use for the current ride                          | `string` |
+| `dealIds`            | List of deal IDs used for the current ride                                 | `array`  |
 | `comments`           | Comments about the ride                                                    | `array`  |
 | `pickupRange`        | Acceptable range for pickup location (in kilometers)                       | `number` |
 | `pickupTimeRange`    | Acceptable time range for pickup (in minutes)                              | `object` |
-| `apps`               | List of apps used by the driver and passengers for the ride                | `array`  |
+| `appIds`             | List of app IDs used by the driver and passengers for the ride             | `array`  |
 | `isPublic`           | Indicates if the ride is public or private                                 | `boolean` |
 | `requestDate`        | Date when the ride was requested (ISO 8601 format)                         | `string` |
 | `rideDate`           | Date of the ride (ISO 8601 format)                                         | `string` |
+| `customFields`       | Custom fields for extending ride information                               | `object` |
 
 
 
