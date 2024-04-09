@@ -125,6 +125,9 @@ Could be multiple passengers
 | `rideDate`           | Date of the ride (ISO 8601 format)                                         | `string` |
 | `customFields`       | Custom fields for extending ride information                               | `object` |
 | `qrCode`       | QR code for joining the ride, also with timestamp started                       | `string` |
+| `rideurl`       | url for host of the ride                       | `string` |
+| `ridematchfinfo`       | how the match or ride started,  incar, random, planned, matched, etc          | `string` |
+
 
 
 
