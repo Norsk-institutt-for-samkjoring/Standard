@@ -9,6 +9,8 @@ Feel free to help out!
 [HERE IS THE LATEST ](https://github.com/Norsk-institutt-for-samkjoring/Standard/blob/main/OpenCarPoolingStandard.md "OpenCarPoolingstandard")
 
 
+![AI think its like this.](samkjore2.png)
+
 ### Example 
 #Ride from the 
 ~~version 0.8~~ Version 9
