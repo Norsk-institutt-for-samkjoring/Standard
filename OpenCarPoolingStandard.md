@@ -1,321 +1,383 @@
 # Open CarPool Standard
 
-**General information**
-Version: 0.8
-Work in progress, feel free to add
+**Version: 0.9**
+
+**Work in progress, feel free to add for it to be included in the 1.0 release**
 
 This document contains specifications for carpooling.
 
 ## Table of Contents
-* [User](#user)
-* [Driver](#driver)
-* [Vehicle](#vehicle)
-* [Passenger](#passenger)
-* [Ride](#ride)
-* [Waypoint](#waypoint)
-* [Destination](#destination)
-* [Payment](#payment)
-* [Language](#language)
-* [Groups and Companies](#groups-and-companies)
-* [API](#api)
-* [Internationalization](#internationalization)
-* [Extensions](#extensions)
-* [Security and Privacy](#security-and-privacy)
-* [Real-time Updates](#real-time-updates)
-* [Geospatial](#geospatial)
-* [Analytics and Reporting](#analytics-and-reporting)
-* [Integration](#integration)
-* [Developer Resources](#developer-resources)
-* [Versioning](#versioning)
-* [Certification and Compliance](#certification-and-compliance)
 
-### User
-Information about the users
+- User
+- Driver
+- Vehicle
+- Passenger
+- Ride
+- Waypoint
+- Destination
+- Payment
+- Language
+- Groups and Companies
+- API
+- Internationalization
+- Extensions
+- Security and Privacy
+- Real-time Updates
+- Geospatial
+- Analytics and Reporting
+- Integration
+- Developer Resources
+- Versioning
+- Certification and Compliance
 
-| Field                | Description                                                                 | Type     |
-|----------------------|-----------------------------------------------------------------------------|----------|
-| `userId`             | Unique identifier for the user                                             | `string` |
-| `name`               | Name of the user                                                           | `string` |
-| `email`              | Email address of the user                                                  | `string` |
-| `phone`              | Phone number(s) of the user                                                | `string` |
-| `pictureUrl`         | URL to the user's profile picture (protected)                              | `string` |
-| `language`           | User's preferred language (ISO 639-1)                                      | `string` |
-| `locale`             | User's locale for formatting dates, times, and currencies                  | `string` |
-| `accessibilityNeeds` | User's accessibility needs (e.g., wheelchair access)                       | `array`  |
-| `paymentOptions`     | User's preferred payment options (e.g., credit card, PayPal)               | `array`  |
-| `groups`             | List of group IDs the user belongs to                                      | `array`  |
-| `companies`          | List of company IDs the user is associated with                            | `array`  |
-| `rating`             | User's rating                                                              | `number` |
-| `deals`              | List of active deal IDs for the user                                       | `array`  |
-| `defaultApp`         | User's default carpooling app                                              | `string` |
-| `customFields`       | Custom fields for extending user information                               | `object` |
+## User
 
-[top](#table-of-contents)
+### Information about the users
 
-### Driver
-Information about the driver
-
-| Field                | Description                                                                 | Type     |
-|----------------------|-----------------------------------------------------------------------------|----------|
-| `driverId`           | Unique identifier for the driver                                           | `string` |
-| `userId`             | Unique identifier of the user associated with the driver                   | `string` |
-| `licenseVerified`    | Indicates if the driver's license has been verified                        | `boolean` |
-| `customFields`       | Custom fields for extending driver information                             | `object` |
+| Field          	| Description                                    	| Type	|
+|--------------------|----------------------------------------------------|---------|
+| userId         	| Unique identifier for the user                 	| string  |
+| name           	| Name of the user                               	| string  |
+| email          	| Email address of the user                      	| string  |
+| phone          	| Phone number(s) of the user                    	| string  |
+| pictureUrl     	| URL to the user's profile picture (protected)  	| string  |
+| language       	| User's preferred language (ISO 639-1)          	| string  |
+| locale         	| User's locale for formatting dates, times, and currencies | string  |
+| accessibilityNeeds | User's accessibility needs (e.g., wheelchair access, guide dog, deaf) | array   |
+| paymentOptions 	| User's preferred payment options (e.g., credit card, PayPal) | array   |
+| groups         	| List of group IDs the user belongs to          	| array   |
+| companies      	| List of company IDs the user is associated with	| array   |
+| rating         	| User's rating                                  	| number  |
+| rides          	| Number of rides taken by the user              	| number  |
+| deals          	| List of active deal IDs for the user           	| array   |
+| defaultApp     	| User's default carpooling app/agency           	| string  |
+| customFields   	| Custom fields for extending user information   	| object  |
 
 [top](#table-of-contents)
 
-### Vehicle
+## Driver
 
-| Field                | Description                                                                 | Type     |
-|----------------------|-----------------------------------------------------------------------------|----------|
-| `vehicleId`              | Unique identifier for the vehicle                                             | `string` |
-| `driverId`           | Unique identifier of the driver associated with the vehicle                   | `string` |
-| `color`              | Color of the vehicle                                                           | `string` |
-| `type`               | Type of vehicle (e.g., sedan, SUV, electric, hybrid, bike, helikopter,)                       | `enum`   |
-| `engine`             | Type of propulsion (e.g., gasoline, electric, hybrid, human, )                      | `enum`   |
-| `vehiclepos`             | vehicle or drivers position for dynamic matching, or show on map(like waze)     | `string`   |
-| `insurance`          | Insurance information for the vehicle                                          | `object` |
-| `capacity`           | Total capacity of the vehicle, including the driver                            | `number` |
-| `reservedCapacity`   | Number of seats reserved for the driver (should be 1 for non-autonomous cars) | `number` |
-| `carPicture`         | URL to a picture of the vehicle                                                | `string` |
-| `plateId`            | License plate number or other means of verification                        | `string` |
-| `amenities`          | List of amenities available in the vehicle (e.g., air conditioning, Wi-Fi, child seat) | `array`  |
-| `customFields`       | Custom fields for extending car information                                | `object` |
+### Information about the driver
+
+| Field       	| Description                             	| Type	|
+|-----------------|---------------------------------------------|---------|
+| driverId    	| Unique identifier for the driver        	| string  |
+| userId      	| Unique identifier of the user associated with the driver | string  |
+| licenseVerified | Indicates if the driver's license has been verified | boolean |
+| customFields	| Custom fields for extending driver information | object  |
 
 [top](#table-of-contents)
 
-### Passenger
-Could be multiple passengers
+## Vehicle
 
-| Field                | Description                                                                 | Type     |
-|----------------------|-----------------------------------------------------------------------------|----------|
-| `passengerId`        | Unique identifier for the passenger                                        | `string` |
-| `userId`             | Unique identifier of the user associated with the passenger                | `string` |
-| `luggage`            | Information about the passenger's luggage (e.g., number of bags, size)     | `object` |
-| `passposs`       | passengers position for dynamic matching, or on map(Like Waze) , could be time coded also, and a way to turn on/off                 | `string` |
-| `customFields`       | Custom fields for extending passenger information                           | `object` |
+### Information about the vehicle
 
+| Field         	| Description                                     	| Type	|
+|-------------------|-----------------------------------------------------|---------|
+| vehicleId     	| Unique identifier for the vehicle               	| string  |
+| driverId      	| Unique identifier of the driver associated with the vehicle | string  |
+| color         	| Color of the vehicle                             	| string  |
+| type          	| Type of vehicle (e.g., sedan, SUV, electric, hybrid, bike, helicopter, bus, flatbed) | enum	|
+| engine        	| Type of propulsion (e.g., gasoline, electric, hybrid, human) | enum	|
+| vehiclepos    	| Vehicle or driver's position for dynamic matching, or shown on map (like Waze) | string  |
+| insurance     	| Insurance information for the vehicle           	| object  |
+| capacity      	| Total capacity of the vehicle, including the driver | number  |
+| reservedCapacity  | Number of seats reserved for the driver (should be 1 for non-autonomous vehicles) | number  |
+| vehiclePicture	| URL to a picture of the vehicle                 	| string  |
+| plateId       	| License plate number or other means of verification | string  |
+| amenities     	| List of amenities available in the vehicle (e.g., air conditioning, Wi-Fi, child seat, phone charger, animal cage, non-animal, accessibility attributes, sunshade/sunroof, retractable roof) | array   |
+| vehiclespeedlimit | Maximum speed limit for the vehicle (if different from normal, like for A-traktor) | number  |
+| autopilot          	| Indicates if the vehicle is equipped with an autopilot system   | boolean|
+| laneAssistance     	| Indicates if the vehicle has lane assistance capabilities   	| boolean|
+| advancedFeatures   	| List of advanced features available in the vehicle (e.g., adaptive cruise control, emergency braking, parking assistance) | array  |
+| customFields  	| Custom fields for extending vehicle information 	| object  |
+
+[top](#table-of-contents)
+
+## Passenger
+
+### Information about the passenger
+
+| Field      	| Description                                           	| Type	|
+|----------------|-----------------------------------------------------------|---------|
+| passengerId	| Unique identifier for the passenger                   	| string  |
+| userId     	| Unique identifier of the user associated with the passenger | string  |
+| luggage    	| Information about the passenger's luggage (e.g., number of bags, size) | object  |
+| passengerposs  | Passenger's position for dynamic matching, or shown on map (like Waze), could be time-coded and toggled on/off | string  |
+| customFields   | Custom fields for extending passenger information     	| object  |
+
+[top](#table-of-contents)
+
+## Ride
+
+### Information about the ride
+
+| Field           	| Description                                     	| Type	|
+|---------------------|-----------------------------------------------------|---------|
+| rideId          	| Unique identifier for the ride                  	| string  |
+| driverId        	| Unique identifier of the driver                 	| string  |
+| vehicleId       	| Unique identifier of the vehicle                	| string  |
+| passengerIds    	| List of passenger IDs                           	| array   |
+| state           	| Current state of the ride (e.g., requested, accepted, started, ended) | enum	|
+| startTime       	| Start time of the ride (ISO 8601 format)        	| string  |
+| endTime         	| End time of the ride (ISO 8601 format)          	| string  |
+| waypointIds     	| List of waypoint IDs for the ride               	| array   |
+| destinationId   	| Destination ID                                  	| string  |
+| tripstatus      	| A way to pause trip temporarily but not end the trip | string  |
+| paymentId       	| Payment ID for the ride                         	| string  |
+| estimatedDuration   | Estimated duration of the ride in seconds       	| number  |
+| estimatedDistance   | Estimated distance of the ride in kilometers    	| number  |
+| dealIds         	| List of deal IDs used for the current ride      	| array   |
+| comments        	| Comments about the ride                         	| array   |
+| pickupRange     	| Acceptable range for pickup location (in kilometers) | number  |
+| pickupNegotiation   | Suggested and negotiation for pickup location   	| number  |
+| pickupTimeRange 	| Acceptable time range for pickup (in minutes)   	| object  |
+| appIds          	| List of app IDs used by the driver and passengers for the ride | array   |
+| isPublic        	| Indicates if the ride is public, private, or hidden | boolean |
+| requestDate     	| Date when the ride was requested (ISO 8601 format)  | string  |
+| rideDate        	| Date of the ride (ISO 8601 format)              	| string  |
+| customFields    	| Custom fields for extending ride information    	| object  |
+| qrCode          	| QR code for joining the ride, including timestamp when started | string  |
+| rideurl         	| Deep link for the ride                          	| string  |
+| riderate        	| A way for users to rate the ride after completion   | string  |
+| ridematchfinfo  	| How the match or ride started (e.g., in vehicle, random, planned, matched) | string  |
+
+[top](#table-of-contents)
+
+## Waypoint
+
+### Information about the waypoint
+
+| Field        	| Description                                        	| Type	|
+|------------------|--------------------------------------------------------|---------|
+| waypointId   	| Unique identifier for the waypoint                 	| string  |
+| name         	| Name of the waypoint                               	| string  |
+| latitude     	| Latitude of the waypoint                           	| number  |
+| longitude    	| Longitude of the waypoint                          	| number  |
+| openForNegotiation | If the waypoint is open for negotiation           	| boolean |
+| viawaypoint 	| Allowing passenger or driver to set via points     	| object  |
+| localNames   	| List of local names or slang for the waypoint      	| array   |
+| country      	| Country of the waypoint                            	| string  |
+| pickupComments   | Comments about the waypoint                        	| array   |
+| customFields 	| Custom fields for extending waypoint information   	| object  |
+
+[top](#table-of-contents)
+
+## Destination
+
+### Information about the destination
+
+| Field            	| Description                                   	| Type	|
+|----------------------|---------------------------------------------------|---------|
+| destinationId    	| Unique identifier for the destination         	| string  |
+| destinationNegotiation | Suggested and negotiation for destination location | number  |
+| name             	| Name of the destination                       	| string  |
+| latitude         	| Latitude of the destination                   	| number  |
+| longitude        	| Longitude of the destination                  	| number  |
+| localNames       	| List of local names or slang for the destination  | array   |
+| country          	| Country of the destination                    	| string  |
+| distanceKm       	| Distance from the destination location        	| number  |
+| destinationComments  | Comments about the destination                	| array   |
+| customFields     	| Custom fields for extending destination information | object  |
+
+[top](#table-of-contents)
+
+## Payment
+
+### List of payment options for the service
+
+| Field      	| Description                                         	| Type	|
+|----------------|---------------------------------------------------------|---------|
+| paymentId  	| Unique identifier for the payment                   	| string  |
+| rideId     	| Unique identifier of the associated ride            	| string  |
+| paymentOptions | Available payment options (e.g., credit card, PayPal, cash) | array   |
+| dealIds    	| List of deal IDs applied to the payment,
+
+ including passenger-specific deals, location, time or distance-based promotions | array   |
+| status     	| Status of the payment (e.g., pending, completed, failed) | enum	|
+| customFields   | Custom fields for extending payment information, which could also be used for compensation, tips, payment for additional services | object  |
+
+[top](#table-of-contents)
+
+## Language
+
+### Information about language preferences
+
+| Field    	| Description                      	| Type	|
+|--------------|--------------------------------------|---------|
+| languageCode | Language code (ISO 639-1)        	| string  |
+| name     	| Name of the language             	| string  |
+| nativeName   | Native name of the language      	| string  |
+
+[top](#table-of-contents)
+
+## Groups and Companies
+
+### Information about user groups and associated companies
+
+| Field      	| Description                           	| Type	|
+|----------------|-------------------------------------------|---------|
+| groupId    	| Unique identifier for the group       	| string  |
+| name       	| Name of the group                     	| string  |
+| type       	| Type of the group (e.g., public, private, hidden) | enum	|
+| dealIds    	| List of deal IDs available to group members | array   |
+| customFields   | Custom fields for extending group information | object  |
+
+| Field      	| Description                           	| Type	|
+|----------------|-------------------------------------------|---------|
+| companyId  	| Unique identifier for the company     	| string  |
+| name       	| Name of the company                   	| string  |
+| dealIds    	| List of deal IDs available to employees of the company | array   |
+| customFields   | Custom fields for extending company information | object  |
+
+[top](#table-of-contents)
+
+
+## API
+
+### Information about the API endpoints and their functionality
+
+| Endpoint                      	| Method | Description                                                                               	|
+|-----------------------------------|--------|-----------------------------------------------------------------------------------------------|
+| /v1/users                     	| GET	| Retrieve a list of users (paginated, filterable, sortable)                                 	|
+| /v1/users                     	| POST   | Create a new user                                                                         	|
+| /v1/users/{userId}            	| GET	| Retrieve a specific user by ID                                                            	|
+| /v1/users/{userId}            	| PUT	| Update a specific user by ID                                                              	|
+| /v1/users/{userId}            	| DELETE | Delete a specific user by ID                                                              	|
+| /v1/drivers                   	| GET	| Retrieve a list of drivers (paginated, filterable, sortable)                              	|
+| /v1/drivers                   	| POST   | Create a new driver                                                                       	|
+| /v1/drivers/{driverId}        	| GET	| Retrieve a specific driver by ID                                                          	|
+| /v1/drivers/{driverId}        	| PUT	| Update a specific driver by ID                                                            	|
+| /v1/drivers/{driverId}        	| DELETE | Delete a specific driver by ID                                                            	|
+| /v1/vehicles                  	| GET	| Retrieve a list of vehicles (paginated, filterable, sortable)                             	|
+| /v1/vehicles                  	| POST   | Create a new vehicle                                                                      	|
+| /v1/vehicles/{vehicleId}      	| GET	| Retrieve a specific vehicle by ID                                                         	|
+| /v1/vehicles/{vehicleId}      	| PUT	| Update a specific vehicle by ID                                                           	|
+| /v1/vehicles/{vehicleId}      	| DELETE | Delete a specific vehicle by ID                                                           	|
+| /v1/rides                     	| GET	| Retrieve a list of rides (paginated, filterable, sortable)                                	|
+| /v1/rides                     	| POST   | Create a new ride                                                                         	|
+| /v1/rides/{rideId}            	| GET	| Retrieve a specific ride by ID                                                            	|
+| /v1/rides/{rideId}            	| PUT	| Update a specific ride by ID                                                              	|
+| /v1/rides/{rideId}            	| DELETE | Delete a specific ride by ID                                                              	|
+| /v1/waypoints                 	| GET	| Retrieve a list of waypoints (paginated, filterable, sortable)                            	|
+| /v1/waypoints                 	| POST   | Create a new waypoint                                                                     	|
+| /v1/waypoints/{waypointId}    	| GET	| Retrieve a specific waypoint by ID                                                        	|
+| /v1/waypoints/{waypointId}    	| PUT	| Update a specific waypoint by ID                                                          	|
+| /v1/waypoints/{waypointId}    	| DELETE | Delete a specific waypoint by ID                                                          	|
+| /v1/destinations              	| GET	| Retrieve a list of destinations (paginated, filterable, sortable)                         	|
+| /v1/destinations              	| POST   | Create a new destination                                                                  	|
+| /v1/destinations/{destinationId}  | GET	| Retrieve a specific destination by ID                                                     	|
+| /v1/destinations/{destinationId}  | PUT	| Update a specific destination by ID                                                       	|
+| /v1/destinations/{destinationId}  | DELETE | Delete a specific destination by ID                                                       	|
+| /v1/payments                  	| GET	| Retrieve a list of payments (paginated, filterable, sortable)                             	|
+| /v1/payments                  	| POST   | Create a new payment                                                                      	|
+| /v1/payments/{paymentId}      	| GET	| Retrieve a specific payment by ID                                                         	|
+| /v1/payments/{paymentId}      	| PUT	| Update a specific payment by ID                                                           	|
+| /v1/payments/{paymentId}      	| DELETE | Delete a specific payment by ID                                                           	|
+| /v1/PTA/{gtfs}                	| GET	| Return GTFS Feed for current region                                                       	|
+| /v1/PTA/{gtfs-RT}             	| GET	| Return GTFS-RT Feed for this region                                                       	|
+| /v1/PTA/{list}                	| GET	| Return closest PTA offers (stop or vehicle)                                               	|
+| /v1/Negotiation/              	| GET	| Suggestion, negotiation, and acceptance of new pickup, waypoint, and drop-off location for passenger |
+| /v1/rides/{rideId}/status     	| PATCH  | Update the status of a specific ride (e.g., start, end, pause, resume)                    	|
+| /v1/users/{userId}/trips      	| GET	| Retrieve a number of trips for a specific user |
+| /v1/analytics/rides           	| GET	| Retrieve analytics data about rides (e.g., total rides, average ride duration, popular routes) |
+| /v1/notifications             	| GET	| Retrieve a list of notifications for a user                                               	|
+| /v1/notifications             	| POST   | Create a new notification for a user                                                      	|
+| /v1/notifications/{notificationId} | GET   | Retrieve a specific notification by ID                                                    	|
+| /v1/notifications/{notificationId} | DELETE | Delete a specific notification by ID                                                      	|
+| /v1/integrations/map          	| POST   | Integrate with a mapping service to provide accurate routing information                  	|
+| /v1/integrations/public-transport | POST   | Integrate with public transport systems to combine carpooling with other transportation modes  |
+| /v1/deals                		 | GET    | Retrieve a list of deals (paginated, filterable, sortable)                           		 |
+| /v1/deals                		 | POST   | Create a new deal                                                                    		 |
+| /v1/deals/{dealId}       		 | GET    | Retrieve a specific deal by ID                                                       		 |
+| /v1/deals/{dealId}       		 | PUT    | Update a specific deal by ID                                                         		 |
+| /v1/deals/{dealId}       		 | DELETE | Delete a specific deal by ID                                                         		 |
+| /v1/promotions           		 | GET    | Retrieve a list of promotions (paginated, filterable, sortable)                      		 |
+| /v1/promotions           		 | POST   | Create a new promotion                                                               		 |
+| /v1/promotions/{promotionId} 	 | GET    | Retrieve a specific promotion by ID                                                  		 |
+| /v1/promotions/{promotionId} 	 | PUT    | Update a specific promotion by ID                                                    		 |
+| /v1/promotions/{promotionId} 	 | DELETE | Delete a specific promotion by ID                                                    		 |
+| /v1/discounts            		 | GET    | Retrieve a list of discounts (paginated, filterable, sortable)                       		 |
+| /v1/discounts            		 | POST   | Create a new discount                                                                		 |
+| /v1/discounts/{discountId}   	 | GET    | Retrieve a specific discount by ID                                                   		 |
+| /v1/discounts/{discountId}   	 | PUT    | Update a specific discount by ID                                                     		 |
+| /v1/discounts/{discountId}   	 | DELETE | Delete a specific discount by ID                                                     		 |
+
+### User Authentication and Authorization
+
+| Endpoint                 		 | Method | Description                                                                          		 |
+|-----------------------------------|--------|-----------------------------------------------------------------------------------------------|
+| /v1/auth/login           		 | POST   | Authenticate a user and generate a token                                             		 |
+| /v1/auth/logout          		 | POST   | Log out a user and invalidate their token                                            		 |
+| /v1/auth/refresh         		 | POST   | Refresh a user's token                                                               		 |
+| /v1/auth/register        		 | POST   | Register a new user                                                                  		 |
+
+### User Preferences and Settings
+
+| Endpoint                 		 | Method | Description                                                                          		 |
+|-----------------------------------|--------|-----------------------------------------------------------------------------------------------|
+| /v1/user/preferences     		 | GET    | Retrieve the preferences and settings for the current user                           		 |
+| /v1/user/preferences     		 | PUT    | Update the preferences and settings for the current user                             		 |
+| /v1/user/preferences     		 | DELETE | Reset the preferences and settings for the current user                              		 |
 
 
 [top](#table-of-contents)
 
-### Ride
-
-| Field                | Description                                                                 | Type     |
-|----------------------|-----------------------------------------------------------------------------|----------|
-| `rideId`             | Unique identifier for the ride                                             | `string` |
-| `driverId`           | Unique identifier of the driver                                            | `string` |
-| `vehicleId`          | Unique identifier of the vehicle                                               | `string` |
-| `passengerIds`       | List of passenger IDs                                                      | `array`  |
-| `state`              | Current state of the ride (e.g., requested, accepted, started, ended)      | `enum`   |
-| `startTime`          | Start time of the ride (ISO 8601 format)                                   | `string` |
-| `endTime`            | End time of the ride (ISO 8601 format)                                     | `string` |
-| `waypointIds`        | List of waypoint IDs for the ride                                          | `array`  |
-| `destinationId`      | Destination ID                                                             | `string` |
-| `paymentId`          | Payment ID for the ride                                                    | `string` |
-| `estimatedDuration`  | Estimated duration of the ride in seconds                                  | `number` |
-| `estimatedDistance`  | Estimated distance of the ride in kilometers                               | `number` |
-| `dealIds`            | List of deal IDs used for the current ride                                 | `array`  |
-| `comments`           | Comments about the ride                                                    | `array`  |
-| `pickupRange`        | Acceptable range for pickup location (in kilometers)                       | `number` |
-| `pickupTimeRange`    | Acceptable time range for pickup (in minutes)                              | `object` |
-| `appIds`             | List of app IDs used by the driver and passengers for the ride             | `array`  |
-| `isPublic`           | Indicates if the ride is public or private                                 | `boolean` |
-| `requestDate`        | Date when the ride was requested (ISO 8601 format)                         | `string` |
-| `rideDate`           | Date of the ride (ISO 8601 format)                                         | `string` |
-| `customFields`       | Custom fields for extending ride information                               | `object` |
-| `qrCode`       | QR code for joining the ride, also with timestamp started                       | `string` |
-| `rideurl`       | url for host of the ride                       | `string` |
-| `ridematchfinfo`       | how the match or ride started,  incar, random, planned, matched, etc          | `string` |
 
 
+## Notes
 
+### Security and Privacy
 
-[top](#table-of-contents)
-
-### Waypoint
-
-| Field                | Description                                                                 | Type     |
-|----------------------|-----------------------------------------------------------------------------|----------|
-| `waypointId`         | Unique identifier for the waypoint                                         | `string` |
-| `name`               | Name of the waypoint                                                       | `string` |
-| `latitude`           | Latitude of the waypoint                                                   | `number` |
-| `longitude`          | Longitude of the waypoint                                                  | `number` |
-| `via waypoint`       | allowing for passenger or driver to set via points                        | `string` |
-| `localNames`         | List of local names or slang for the waypoint                              | `array`  |
-| `country`            | Country of the waypoint                                                    | `string` |
-| `pickupComments`     | Comments about the waypoint                                                | `array`  |
-| `customFields`       | Custom fields for extending waypoint information                           | `object` |
-
-[top](#table-of-contents)
-
-### Destination
-
-| Field                | Description                                                                 | Type     |
-|----------------------|-----------------------------------------------------------------------------|----------|
-| `destinationId`      | Unique identifier for the destination                                      | `string` |
-| `name`               | Name of the destination                                                    | `string` |
-| `latitude`           | Latitude of the destination                                                | `number` |
-| `longitude`          | Longitude of the destination                                               | `number` |
-| `localNames`         | List of local names or slang for the destination                           | `array`  |
-| `country`            | Country of the destination                                                 | `string` |
-| `distanceKm`         | Distance from the destination location                                     | `number` |
-| `destinationComments`  | Comments about the destination                                             | `array`  |
-| `customFields`       | Custom fields for extending destination information                        | `object` |
-
-[top](#table-of-contents)
-
-### Payment
-List of payment options for the service
-
-| Field                | Description                                                                 | Type     |
-|----------------------|-----------------------------------------------------------------------------|----------|
-| `paymentId`          | Unique identifier for the payment                                          | `string` |
-| `rideId`             | Unique identifier of the associated ride                                   | `string` |
-| `paymentOptions`     | Available payment options (e.g., credit card, PayPal, cash)                | `array`  |
-| `dealIds`            | List of deal IDs applied to the payment, passenger-specific deals, location, time or distance based promotions | `array`  |
-| `status`             | Status of the payment (e.g., pending, completed, failed)                   | `enum`   |
-| `customFields`       | Custom fields for extending payment information                            | `object` |
-
-[top](#table-of-contents)
-
-### Language
-Information about language preferences
-
-| Field                | Description                                                                 | Type     |
-|----------------------|-----------------------------------------------------------------------------|----------|
-| `languageCode`       | Language code (ISO 639-1)                                                  | `string` |
-| `name`               | Name of the language                                                       | `string` |
-| `nativeName`         | Native name of the language                                                | `string` |
-
-[top](#table-of-contents)
-
-### Groups and Companies
-Information about user groups and associated companies
-
-| Field                | Description                                                                 | Type     |
-|----------------------|-----------------------------------------------------------------------------|----------|
-| `groupId`            | Unique identifier for the group                                            | `string` |
-| `name`               | Name of the group                                                          | `string` |
-| `type`               | Type of the group (e.g., public, private, hidden)                          | `enum`   |
-| `dealIds`            | List of deal IDs available to group members                                | `array`  |
-| `customFields`       | Custom fields for extending group information                              | `object` |
-
-| Field                | Description                                                                 | Type     |
-|----------------------|-----------------------------------------------------------------------------|----------|
-| `companyId`          | Unique identifier for the company                                          | `string` |
-| `name`               | Name of the company                                                        | `string` |
-| `dealIds`            | List of deal IDs available to employees of the company                     | `array`  |
-| `customFields`       | Custom fields for extending company information                            | `object` |
-
-[top](#table-of-contents)
-
-### API
-Information about the API endpoints and their functionality
-
-| Endpoint             | Method    | Description                                                                 | Type     |
-|----------------------|-----------|-----------------------------------------------------------------------------|----------|
-| `API@Integration`    | `Text`   |Integration with third-party APIs                                     | 
-| `API@Endpoints`      |`Text`   | List of available endpoints                                                 | 
-| `API@Authentication` | `Text`   |Authentication methods                                                      | 
-| `/v1/users`          | `GET`     | Retrieve a list of users (paginated, filterable, sortable)                 |          |
-| `/v1/users`          | `POST`    | Create a new user                                                          |          |
-| `/v1/users/{userId}` | `GET`     | Retrieve a specific user by ID                                             |          |
-| `/v1/users/{userId}` | `PUT`     | Update a specific user by ID                                               |          |
-| `/v1/users/{userId}` | `DELETE`  | Delete a specific user by ID                                               |          |
-| `/v1/drivers`        | `GET`     | Retrieve a list of drivers (paginated, filterable, sortable)               |          |
-| `/v1/drivers`        | `POST`    | Create a new driver                                                        |          |
-| `/v1/drivers/{driverId}` | `GET`     | Retrieve a specific driverby ID                                       |          |
-| `/v1/drivers/{driverId}` | `PUT`     | Update a specific driver by ID                                         |          |
-| `/v1/drivers/{driverId}` | `DELETE`  | Delete a specific driver by ID                                         |          |
-| `/v1/cars`           | `GET`     | Retrieve a list of cars (paginated, filterable, sortable)                  |          |
-| `/v1/cars`           | `POST`    | Create a new car                                                           |          |
-| `/v1/cars/{carId}`   | `GET`     | Retrieve a specific car by ID                                              |          |
-| `/v1/cars/{carId}`   | `PUT`     | Update a specific car by ID                                                |          |
-| `/v1/cars/{carId}`   | `DELETE`  | Delete a specific car by ID                                                |          |
-| `/v1/rides`          | `GET`     | Retrieve a list of rides (paginated, filterable, sortable)                |          |
-| `/v1/rides`          | `POST`    | Create a new ride                                                         |          |
-| `/v1/rides/{rideId}` | `GET`     | Retrieve a specific ride by ID                                            |          |
-| `/v1/rides/{rideId}` | `PUT`     | Update a specific ride by ID                                              |          |
-| `/v1/rides/{rideId}` | `DELETE`  | Delete a specific ride by ID                                              |          |
-| `/v1/waypoints`      | `GET`     | Retrieve a list of waypoints (paginated, filterable, sortable)            |          |
-| `/v1/waypoints`      | `POST`    | Create a new waypoint                                                     |          |
-| `/v1/waypoints/{waypointId}` | `GET`     | Retrieve a specific waypoint by ID                                |          |
-| `/v1/waypoints/{waypointId}` | `PUT`     | Update a specific waypoint by ID                                    |          |
-| `/v1/waypoints/{waypointId}` | `DELETE`  | Delete a specific waypoint by ID                                    |          |
-| `/v1/destinations`   | `GET`     | Retrieve a list of destinations (paginated, filterable, sortable)         |          |
-| `/v1/destinations`   | `POST`    | Create a new destination                                                  |          |
-| `/v1/destinations/{destinationId}` | `GET`     | Retrieve a specific destination by ID                        |          |
-| `/v1/destinations/{destinationId}` | `PUT`     | Update a specific destination by ID                            |          |
-| `/v1/destinations/{destinationId}` | `DELETE`  | Delete a specific destination by ID                            |          |
-| `/v1/payments`       | `GET`     | Retrieve a list of payments (paginated, filterable, sortable)             |          |
-| `/v1/payments`       | `POST`    | Create a new payment                                                      |          |
-| `/v1/payments/{paymentId}` | `GET`     | Retrieve a specific payment by ID                                    |          |
-| `/v1/payments/{paymentId}` | `PUT`     | Update a specific payment by ID                                        |          |
-| `/v1/payments/{paymentId}` | `DELETE`  | Delete a specific payment by ID                                        |          |
-| `/v1/PTA/{gtfs}` | `GET`     | Return GTFS Feed for current region                                |          |
-| `/v1/PTA/{gtfs-RT}` | `GET`     | Return GTFS-RT Feed for this region                                       |          |
-| `/v1/PTA/{list}` | `GET`  | Return closest PTA offers (stop or vehicle)                                        |          |
-
-Note: All endpoints should implement proper authentication, authorization, and security measures. Error handling and documentation should be provided for each endpoint. Pagination, filtering, and sorting should be supported where applicable.
-
-[top](#table-of-contents)
-
-## OTHERS
-
-
-### Internationalization
-- Support multiple languages and locales for user-facing content
-- Allow customization of date and time formats, currency, and units of measurement based on the user's locale
-- Provide translations for error messages and API responses
-
-### Extensions
-- Allow developers to extend the standard by adding custom fields or objects to accommodate specific use cases or regional requirements
-- Provide a mechanism for developers to define custom validation rules and constraints for their extensions
-
-### Securityand Privacy
-- Implement strong authentication and authorization mechanisms, such as OAuth 2.0 or JWT, to ensure secure access to the API
-- Use encryption for sensitive data transmission and storage, such as HTTPS for API communication and encryption at rest for stored data
-- Adhere to privacy regulations like GDPR and CCPA, and provide clear guidelines for handling user data and obtaining user consent
+- Strong authentication and authorization mechanisms (e.g., OAuth 2.0 or JWT) should be required to ensure secure access to the API.
+- Encryption for sensitive data transmission and storage (e.g., HTTPS for API communication and encryption at rest for stored data) should be used.
+- Adherence to privacy regulations like GDPR and CCPA, with clear guidelines for handling user data and obtaining user consent, is mandatory.
 
 ### Real-time Updates
-- Include support for real-time updates and notifications, such as WebSocket or server-sent events, to enable live tracking of rides, driver locations, and status changes
-- Provide push notifications for important events, such as ride requests, acceptances, and cancellations
+
+- Support for real-time updates and notifications (e.g., WebSocket or server-sent events) to enable live tracking of rides, driver locations, and status changes.
+- Push notifications for important events, such as ride requests, acceptances, and cancellations, should be provided.
 
 ### Geospatial
-- Incorporate geospatial data types and queries to support location-based services and searches
-- Provide APIs for geocoding, reverse geocoding, and distance calculations based on user locations and destinations
+
+- APIs for geocoding, reverse geocoding, and distance calculations based on user locations and destinations should be available.
 
 ### Analytics and Reporting
-- Include endpoints and data structures for capturing and analyzing usage metrics, such as ride counts, popular routes, and user demographics
-- Provide APIs for generating reports and dashboards to help developers and businesses gain insights into their carpooling services
+
+- Endpoints and data structures for capturing and analyzing usage metrics (e.g., ride counts, popular routes, user demographics) should be included.
+- APIs for generating reports and dashboards to help developers and businesses gain insights into their carpooling services should be provided.
 
 ### Integration
-- Offer integration points with popular mapping and navigation services, such as Google Maps or OpenStreetMap, to provide accurate and up-to-date routing information
-- Allow integration with payment gateways and providers to facilitate seamless and secure payment processing
 
-### Integration with Public Transport:
-- Standards should support integration with public transport systems, allowing users to combine carpooling with other modes of transportation.
-- Public transport companies should be able to make API requests to obtain match results for specific trips, including path, time, and additional information.
+- Integration points with popular mapping and navigation services (e.g., Google Maps, OpenStreetMap) to provide accurate and up-to-date routing information should be offered.
+- Integration with public transport systems to allow users to combine carpooling with other modes of transportation should be supported. Public transport companies should be able to make API requests to obtain match results for specific trips, including path, time, and additional information.
 
-### Developer Resources
-- Provide comprehensive documentation, including API references, tutorials, and code samples, to help developers quickly understand and adopt the standard
-- Establish a developer community forum or platform where developers can ask questions, share experiences, and collaborate on projects related to the standard
+### General Requirements
 
-### Versioning
-- Implement a clear versioning strategy for the API, following semantic versioning principles, to manage changes and ensure backward compatibility
-- Provide migration guides and deprecation policies to help developers transition smoothly between versions
-
-### Certification and Compliance
-- Establish a certification program or compliance guidelines to ensure that implementations adhere to the standard and maintain a high level of quality and interoperability
-- Offer a testing suite or validation tools to help developers verify their implementations against the standard
+- All endpoints should implement proper authentication, authorization, and security measures.
+- Error handling and documentation should be provided for each endpoint.
+- Pagination, filtering, and sorting should be supported where applicable.
 
 [top](#table-of-contents)
 
-This includes the updated version of the Open CarPool Standard (v0.8).
-The standard now includes additional improvements to make it more attractive and developer-friendly for worldwide adoption.
+### Changes
+
+This document contains the updated version of the Open CarPool Standard (v0.9). The standard now includes several enhancements to support a wider range of mobility solutions and improve user experience. Key updates and additions include:
+
+- **Waypoint Negotiation**: Allowing users to negotiate waypoints dynamically during a trip.
+- **Animals in Transit**: Supporting the inclusion of animals in transit, including guide dogs, with appropriate amenities.
+- **Hidden Rides**: Introducing the option for hidden rides for enhanced privacy.
+- **Improved Vehicle Amenities**: Expanding the list of available amenities in vehicles.
+- **General Mobility Support**: Moving away from the term "cars" to encompass various future mobility solutions, including bikes and other vehicle types.
+- **Trip Pausing**: Enabling trips to be paused and resumed as needed.
+- **Post-Trip Ratings**: Allowing users to rate their experience after a trip.
+- **Trip Visibility**: Listing the number of trips a user has taken (if not hidden).
+- **Improved API**: Updated API to reflect a lot of new changes
+
+---
 
 MIT License 2024 Norwegian Carpooling Embassy
 
+[top](#table-of-contents)
 
-These enhancements aim to make the Open CarPool Standard more comprehensive, flexible, and appealing to developers globally. By addressing aspects such as internationalization, extensibility, security, real-time updates, geospatial capabilities, analytics, integration, developer resources, versioning, and certification, the standard becomes a robust foundation for building interoperable and feature-rich carpooling applications.
+---
