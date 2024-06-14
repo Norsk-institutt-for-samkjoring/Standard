@@ -55,6 +55,7 @@ Feel free to help out!
 * https://github.com/openmobilityfoundation/mobility-data-specification/tree/main#about
 * https://github.com/mitfahrverband/mitfahr-api
 * https://github.com/mfdz/amarillo
+* https://github.com/mitanand
 
 ### Todo
 - [x] Find license ([MIT](https://github.com/Norsk-institutt-for-samkjoring/Standard/blob/main/LICENSE))
@@ -63,7 +64,7 @@ Feel free to help out!
 - [ ] get feedback
 
 ### Contributors
-* Norwegian carpool embassy / Norsk institutt for samkjøring -> with help from AI's
+* Norwegian carpool embassy / Norsk institutt for samkjøring -> with help from AI's and feedback from others
 
 
 
