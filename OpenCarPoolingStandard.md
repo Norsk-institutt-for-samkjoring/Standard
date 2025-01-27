@@ -1,8 +1,8 @@
 # Open CarPool Standard
 
-**Version: 0.9**
+**Version: 1.0 **
 
-**Work in progress, feel free to add for it to be included in the 1.0 release**
+**Work in progress, feel free to add items for it to be included in the 1.1 release**
 
 This document contains specifications for carpooling.
 
@@ -48,10 +48,14 @@ This document contains specifications for carpooling.
 | groups         	| List of group IDs the user belongs to          	| array   |
 | companies      	| List of company IDs the user is associated with	| array   |
 | rating         	| User's rating                                  	| number  |
+| backgroundCheck         	| Indicates if a background check has been completed, and what type/date                                 	| object  |
 | rides          	| Number of rides taken by the user              	| number  |
 | deals          	| List of active deal IDs for the user           	| array   |
 | defaultApp     	| User's default carpooling app/agency           	| string  |
-| customFields   	| Custom fields for extending user information   	| object  |
+| customFields   	| Custom fields for extending user information, like Carbon Tracking, distance covered   	| object  |
+| realTimeSharing 	| Real-time sharing of ride information with trusted contacts             	| boolean |
+| emergencyContacts  | List of emergency contacts to notify during a ride (e.g., name, phone number) | array  |
+
 
 [top](#table-of-contents)
 
@@ -77,8 +81,9 @@ This document contains specifications for carpooling.
 | vehicleId     	| Unique identifier for the vehicle               	| string  |
 | driverId      	| Unique identifier of the driver associated with the vehicle | string  |
 | color         	| Color of the vehicle                             	| string  |
-| type          	| Type of vehicle (e.g., sedan, SUV, electric, hybrid, bike, helicopter, bus, flatbed) | enum	|
+| type          	| Type of vehicle (e.g., sedan, SUV, electric, hybrid, bike, boat, helicopter, bus, flatbed) | enum	|
 | engine        	| Type of propulsion (e.g., gasoline, electric, hybrid, human) | enum	|
+| sustainabilityScore | A score representing the sustainability of the vehicle | number |
 | vehiclepos    	| Vehicle or driver's position for dynamic matching, or shown on map (like Waze) | string  |
 | insurance     	| Insurance information for the vehicle           	| object  |
 | capacity      	| Total capacity of the vehicle, including the driver | number  |
@@ -87,7 +92,7 @@ This document contains specifications for carpooling.
 | plateId       	| License plate number or other means of verification | string  |
 | amenities     	| List of amenities available in the vehicle (e.g., air conditioning, Wi-Fi, child seat, phone charger, animal cage, non-animal, accessibility attributes, sunshade/sunroof, retractable roof) | array   |
 | vehiclespeedlimit | Maximum speed limit for the vehicle (if different from normal, like for A-traktor) | number  |
-| autopilot          	| Indicates if the vehicle is equipped with an autopilot system   | boolean|
+| autopilot          	| Indicates if the vehicle is equipped with an autopilot system, and what level   | object|
 | laneAssistance     	| Indicates if the vehicle has lane assistance capabilities   	| boolean|
 | advancedFeatures   	| List of advanced features available in the vehicle (e.g., adaptive cruise control, emergency braking, parking assistance) | array  |
 | customFields  	| Custom fields for extending vehicle information 	| object  |
@@ -141,6 +146,8 @@ This document contains specifications for carpooling.
 | rideurl         	| Deep link for the ride                          	| string  |
 | riderate        	| A way for users to rate the ride after completion   | string  |
 | ridematchfinfo  	| How the match or ride started (e.g., in vehicle, random, planned, matched) | string  |
+| sustainabilityScore | A score representing the sustainability of the ride (e.g., based on vehicle type and distance) | number |
+
 
 [top](#table-of-contents)
 
@@ -192,7 +199,6 @@ This document contains specifications for carpooling.
 | rideId     	| Unique identifier of the associated ride            	| string  |
 | paymentOptions | Available payment options (e.g., credit card, PayPal, cash) | array   |
 | dealIds    	| List of deal IDs applied to the payment,
-
  including passenger-specific deals, location, time or distance-based promotions | array   |
 | status     	| Status of the payment (e.g., pending, completed, failed) | enum	|
 | customFields   | Custom fields for extending payment information, which could also be used for compensation, tips, payment for additional services | object  |
@@ -222,6 +228,8 @@ This document contains specifications for carpooling.
 | type       	| Type of the group (e.g., public, private, hidden) | enum	|
 | dealIds    	| List of deal IDs available to group members | array   |
 | customFields   | Custom fields for extending group information | object  |
+| socialFeatures  	| Social features for matching users with similar interests or destinations   | object |
+
 
 | Field      	| Description                           	| Type	|
 |----------------|-------------------------------------------|---------|
@@ -233,7 +241,7 @@ This document contains specifications for carpooling.
 [top](#table-of-contents)
 
 
-## API
+## API Example
 
 ### Information about the API endpoints and their functionality
 
@@ -269,11 +277,21 @@ This document contains specifications for carpooling.
 | /v1/destinations/{destinationId}  | GET	| Retrieve a specific destination by ID                                                     	|
 | /v1/destinations/{destinationId}  | PUT	| Update a specific destination by ID                                                       	|
 | /v1/destinations/{destinationId}  | DELETE | Delete a specific destination by ID                                                       	|
+| /v1/users/{userId}/sharing     	| GET    | Get real-time sharing settings for a user                    |
+| /v1/users/{userId}/sharing     	| PUT    | Update real-time sharing settings                            |
+| /v1/sustainability/vehicles    	| GET    | Get sustainability scores for vehicles                        |
+| /v1/sustainability/rides       	| GET    | Get sustainability metrics for rides                          |
+| /v1/social/matches            	| GET    | Get potential carpool matches based on social preferences      |
+| /v1/social/interests          	| PUT    | Update user's social matching preferences                      |
 | /v1/payments                  	| GET	| Retrieve a list of payments (paginated, filterable, sortable)                             	|
 | /v1/payments                  	| POST   | Create a new payment                                                                      	|
 | /v1/payments/{paymentId}      	| GET	| Retrieve a specific payment by ID                                                         	|
 | /v1/payments/{paymentId}      	| PUT	| Update a specific payment by ID                                                           	|
 | /v1/payments/{paymentId}      	| DELETE | Delete a specific payment by ID                                                           	|
+| /v1/vehicles/{vehicleId}/autonomous  | GET    |  Get autonomous driving capabilities and certification (e.g., level of autonomy, certification status)      |
+| /v1/vehicles/{vehicleId}/safety 	| GET    | Get vehicle safety certifications and features (e.g., crash test ratings, advanced safety systems)             |
+| /v1/background-checks         	| POST   | Initiate a background check for a user                        |
+| /v1/background-checks/{checkId}	| GET    | Get status and results of a background check                 |
 | /v1/PTA/{gtfs}                	| GET	| Return GTFS Feed for current region                                                       	|
 | /v1/PTA/{gtfs-RT}             	| GET	| Return GTFS-RT Feed for this region                                                       	|
 | /v1/PTA/{list}                	| GET	| Return closest PTA offers (stop or vehicle)                                               	|
@@ -302,6 +320,7 @@ This document contains specifications for carpooling.
 | /v1/discounts/{discountId}   	 | GET    | Retrieve a specific discount by ID                                                   		 |
 | /v1/discounts/{discountId}   	 | PUT    | Update a specific discount by ID                                                     		 |
 | /v1/discounts/{discountId}   	 | DELETE | Delete a specific discount by ID                                                     		 |
+| /v1/webhooks               	| POST   | Register a webhook for real-time updates                                	|
 
 ### User Authentication and Authorization
 
@@ -362,21 +381,19 @@ This document contains specifications for carpooling.
 
 ### Changes
 
-This document contains the updated version of the Open CarPool Standard (v0.9). The standard now includes several enhancements to support a wider range of mobility solutions and improve user experience. Key updates and additions include:
+This document contains the updated version of the Open CarPool Standard (v1.0). The standard now includes several enhancements to support a wider range of mobility solutions and improve user experience. Key updates and additions include:
 
-- **Waypoint Negotiation**: Allowing users to negotiate waypoints dynamically during a trip.
-- **Animals in Transit**: Supporting the inclusion of animals in transit, including guide dogs, with appropriate amenities.
-- **Hidden Rides**: Introducing the option for hidden rides for enhanced privacy.
-- **Improved Vehicle Amenities**: Expanding the list of available amenities in vehicles.
-- **General Mobility Support**: Moving away from the term "cars" to encompass various future mobility solutions, including bikes and other vehicle types.
-- **Trip Pausing**: Enabling trips to be paused and resumed as needed.
-- **Post-Trip Ratings**: Allowing users to rate their experience after a trip.
-- **Trip Visibility**: Listing the number of trips a user has taken (if not hidden).
-- **Improved API**: Updated API to reflect a lot of new changes
+- **Social Features**: Added social features for matching users with similar interests or destinations.
+- **Autonomous Level**: Included autonomous driving level in the `autopilot` field.
+- **Sustainability Score**: Added a sustainability score for vehicles and rides.
+- **Webhooks**: Added support for webhooks to enable real-time updates.
+- **Background Check**: Added a field to indicate if a background check has been completed, including type and date.
+- **Real-time Sharing**: Added real-time sharing of ride information with trusted contacts.
+- **Emergency Contacts**: Added a field for emergency contacts to notify during a ride.
 
 ---
 
-MIT License 2024 Norwegian Carpooling Embassy
+MIT License 2025 Norwegian Carpooling Embassy
 
 [top](#table-of-contents)
 
