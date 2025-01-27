@@ -1,8 +1,8 @@
 # Open CarPool Standard
 
-**Version: 1.0 **
+**Version: 1.1 **
 
-**Work in progress, feel free to add items for it to be included in the 1.1 release**
+**Work in progress, feel free to add items for it to be included in the 1.2 release**
 
 This document contains specifications for carpooling.
 
@@ -50,7 +50,7 @@ This document contains specifications for carpooling.
 | rating         	| User's rating                                  	| number  |
 | backgroundCheck         	| Indicates if a background check has been completed, and what type/date                                 	| object  |
 | rides          	| Number of rides taken by the user              	| number  |
-| deals          	| List of active deal IDs for the user           	| array   |
+| deals          	| List of active deal IDs for the user, like PTA tickets           	| array   |
 | defaultApp     	| User's default carpooling app/agency           	| string  |
 | customFields   	| Custom fields for extending user information, like Carbon Tracking, distance covered   	| object  |
 | realTimeSharing 	| Real-time sharing of ride information with trusted contacts             	| boolean |
@@ -133,6 +133,7 @@ This document contains specifications for carpooling.
 | estimatedDuration   | Estimated duration of the ride in seconds       	| number  |
 | estimatedDistance   | Estimated distance of the ride in kilometers    	| number  |
 | dealIds         	| List of deal IDs used for the current ride      	| array   |
+| tollCosts        | Total cost of tolls for the ride, if applicable | number |
 | comments        	| Comments about the ride                         	| array   |
 | pickupRange     	| Acceptable range for pickup location (in kilometers) | number  |
 | pickupNegotiation   | Suggested and negotiation for pickup location   	| number  |
@@ -159,6 +160,7 @@ This document contains specifications for carpooling.
 |------------------|--------------------------------------------------------|---------|
 | waypointId   	| Unique identifier for the waypoint                 	| string  |
 | name         	| Name of the waypoint                               	| string  |
+| waypointlookup | Address, or waypoint from National Stop Register (NSR) or custom | string |
 | latitude     	| Latitude of the waypoint                           	| number  |
 | longitude    	| Longitude of the waypoint                          	| number  |
 | openForNegotiation | If the waypoint is open for negotiation           	| boolean |
@@ -201,7 +203,7 @@ This document contains specifications for carpooling.
 | dealIds    	| List of deal IDs applied to the payment,
  including passenger-specific deals, location, time or distance-based promotions | array   |
 | status     	| Status of the payment (e.g., pending, completed, failed) | enum	|
-| customFields   | Custom fields for extending payment information, which could also be used for compensation, tips, payment for additional services | object  |
+| customFields   | Custom fields for extending payment information, which could also be used for compensation, internal credit, tips, payment for additional services | object  |
 
 [top](#table-of-contents)
 
@@ -225,7 +227,7 @@ This document contains specifications for carpooling.
 |----------------|-------------------------------------------|---------|
 | groupId    	| Unique identifier for the group       	| string  |
 | name       	| Name of the group                     	| string  |
-| type       	| Type of the group (e.g., public, private, hidden) | enum	|
+| type       	| Type of the group (e.g., public, private, hidden, joinable, searchable) | enum	|
 | dealIds    	| List of deal IDs available to group members | array   |
 | customFields   | Custom fields for extending group information | object  |
 | socialFeatures  	| Social features for matching users with similar interests or destinations   | object |
@@ -292,7 +294,7 @@ This document contains specifications for carpooling.
 | /v1/vehicles/{vehicleId}/safety 	| GET    | Get vehicle safety certifications and features (e.g., crash test ratings, advanced safety systems)             |
 | /v1/background-checks         	| POST   | Initiate a background check for a user                        |
 | /v1/background-checks/{checkId}	| GET    | Get status and results of a background check                 |
-| /v1/PTA/{gtfs}                	| GET	| Return GTFS Feed for current region                                                       	|
+| /v1/PTA/{gtfs}                	| GET	| Return GTFS/NeTEx Feed for current region                                                       	|
 | /v1/PTA/{gtfs-RT}             	| GET	| Return GTFS-RT Feed for this region                                                       	|
 | /v1/PTA/{list}                	| GET	| Return closest PTA offers (stop or vehicle)                                               	|
 | /v1/Negotiation/              	| GET	| Suggestion, negotiation, and acceptance of new pickup, waypoint, and drop-off location for passenger |
@@ -381,7 +383,7 @@ This document contains specifications for carpooling.
 
 ### Changes
 
-This document contains the updated version of the Open CarPool Standard (v1.0). The standard now includes several enhancements to support a wider range of mobility solutions and improve user experience. Key updates and additions include:
+This document contains the updated version of the Open CarPool Standard (v1.1). The standard now includes several enhancements to support a wider range of mobility solutions and improve user experience. Key updates and additions include:
 
 - **Social Features**: Added social features for matching users with similar interests or destinations.
 - **Autonomous Level**: Included autonomous driving level in the `autopilot` field.
@@ -390,6 +392,9 @@ This document contains the updated version of the Open CarPool Standard (v1.0). 
 - **Background Check**: Added a field to indicate if a background check has been completed, including type and date.
 - **Real-time Sharing**: Added real-time sharing of ride information with trusted contacts.
 - **Emergency Contacts**: Added a field for emergency contacts to notify during a ride.
+- **Waypoint lookup**: Added the waypointlookup field to allow address or waypoint integration with NSR or equivalent databases.
+- **Toll Costs**: Added tollCosts field to specify the total cost of tolls for the ride.
+- **Small fixes**: PTA card, searchable/joinable groups, internal credits, NeTEx for API
 
 ---
 
