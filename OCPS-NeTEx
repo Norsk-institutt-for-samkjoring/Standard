@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PublicationDelivery xmlns="http://www.netex.org.uk/netex"
+                     xmlns:siri="http://www.siri.org.uk/siri"
+                     xmlns:gml="http://www.opengis.net/gml/3.2"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     version="1.2.2"
+                     xsi:schemaLocation="http://www.netex.org.uk/netex ../../../xsd/NeTEx_publication.xsd">
+
+<!-- ==== OCPS Carpooling Publication ==== -->
+<!-- 
+OCPS (Open Carpooling Standard) is a flexible framework designed specifically for carpooling services. It allows for dynamic ride-sharing arrangements, where passengers and drivers can match based on factors like time, location, vehicle availability, and other user-specific preferences. Key features of OCPS include:
+- Flexible ride statuses (pending, accepted, started, ended)
+- Passenger registration via QR code or app for verification and booking
+- Payment models based on distance, with possibilities for future rush-hour pricing and promotions
+- Options for passengers and drivers to specify vehicle requirements (e.g., child seats, accessibility features)
+
+NeTEx (Network and Timetable Exchange) is an international standard for describing public transport networks and services, including schedules, routes, and vehicle data. It is designed to support the exchange of timetable and network information between different transport providers and systems. Key features of NeTEx include:
+- Static timetables and network descriptions for scheduled services
+- Public transport vehicle and route data (e.g., buses, trams, trains)
+- Service point and stop information
+
+The difference between OCPS and NeTEx is that while NeTEx focuses on the structured data for fixed, scheduled public transport services, OCPS focuses on the flexibility of ride-sharing and carpooling, where users can dynamically interact with the system and modify their travel plans based on real-time needs and preferences.
+
+For more information on the Open Carpooling Standard (OCPS), visit: 
+https://github.com/Norsk-institutt-for-samkjoring/Standard/blob/main/OpenCarPoolingStandard.md
+-->
+<ServiceDelivery>
+        <Metadata>
+            <!-- Metadata about the publication -->
+            <version>1.0</version> <!-- Version of the OCPS publication -->
+            <lastModified>2025-03-31T12:45:00</lastModified> <!-- Last modified timestamp -->
+        </Metadata>
+
+        <!-- Journey details -->
+        <Journey>
+            <id>ride1</id>
+            <status>pending</status> <!-- Initial status of the ride, can be 'pending', 'accepted', etc. -->
+            
+            <!-- Vehicle details -->
+            <vehicle>
+                <id>vehicle1</id>
+                <type>Car</type> <!-- Type of vehicle, can later be expanded to other types (bus, bike, etc.) -->
+                <model>Ford Focus</model> <!-- Vehicle model -->
+                <capacity>4</capacity> <!-- Maximum capacity of passengers -->
+                <plateNumber>AB12345</plateNumber> <!-- Vehicle registration number -->
+                <license>123456789</license> <!-- Vehicle license number for verification -->
+            </vehicle>
+
+            <!-- Passenger details -->
+            <passenger>
+                <id>passenger1</id>
+                <name>Jane Doe</name> <!-- Passenger name -->
+                <contactDetails>
+                    <email>janedoe@example.com</email> <!-- Passenger email -->
+                    <phone>+987654321</phone> <!-- Passenger phone number -->
+                </contactDetails>
+            </passenger>
+
+            <!-- Trip schedule and locations -->
+            <schedule>
+                <startTime>2025-04-01T09:00:00</startTime> <!-- Start time of the trip -->
+                <endTime>2025-04-01T10:00:00</endTime> <!-- End time of the trip -->
+                <pickupLocation>
+                    <latitude>59.9139</latitude> <!-- Latitude of the pickup location -->
+                    <longitude>10.7461</longitude> <!-- Longitude of the pickup location -->
+                </pickupLocation>
+                <dropoffLocation>
+                    <latitude>59.9199</latitude> <!-- Latitude of the drop-off location -->
+                    <longitude>10.7511</longitude> <!-- Longitude of the drop-off location -->
+                </dropoffLocation>
+            </schedule>
+
+            <!-- Route information, can include GML for complex routes -->
+            <route>
+                <start>59.9139,10.7461</start> <!-- Start coordinates of the route -->
+                <end>59.9199,10.7511</end> <!-- End coordinates of the route -->
+                <path>...</path> <!-- Path details or GML for the route -->
+            </route>
+        </Journey>
+
+        <!-- Payment details -->
+        <Payment>
+            <pricePerKm>5.00</pricePerKm> <!-- Price per kilometer -->
+            <currency>EUR</currency> <!-- Currency used for payment -->
+        </Payment>
+
+        <!-- Campaigns or promotions -->
+        <Campaign>
+            <id>discount2025</id>
+            <type>percentage</type> <!-- Type of discount, could also be 'fixed' -->
+            <discountValue>10</discountValue> <!-- 10% discount -->
+            <validFrom>2025-04-01</validFrom> <!-- Start date of the discount -->
+            <validTo>2025-04-30</validTo> <!-- End date of the discount -->
+        </Campaign>
+
+        <!-- Registration info for passengers -->
+        <Registration>
+            <registrationMethod>QR Code</registrationMethod> <!-- Method of registration, QR code in this case -->
+            <validityPeriod>30 days</validityPeriod> <!-- Validity period for the registration -->
+        </Registration>
+
+        <!-- Availability for flexible payment options (PTA, organization, etc.) -->
+        <PaymentOption>
+            <type>PTA</type> <!-- Payment by Public Transport Authority -->
+            <organization>ExampleCorp</organization> <!-- Example organization paying for the ride -->
+            <coverage>full</coverage> <!-- Full coverage of the cost, can be partial or full -->
+        </PaymentOption>
+
+        <!-- Extra flexibility for passengers or drivers to add vehicle needs in the future -->
+        <VehicleRequirement>
+            <passengerNeed>airConditioning</passengerNeed> <!-- Example passenger requirement -->
+            <driverNeed>childSeat</driverNeed> <!-- Example driver requirement -->
+        </VehicleRequirement>
+
+        <!-- Ride status information (can be updated as the ride progresses) -->
+        <RideStatus>
+            <currentState>pending</currentState> <!-- Current state of the ride: 'pending', 'accepted', etc. -->
+        </RideStatus>
+
+        <!-- Flexible days of operation (e.g., only certain days of the week) -->
+        <ScheduleDays>
+            <days>
+                <day>Monday</day> <!-- Available on Monday -->
+                <day>Wednesday</day> <!-- Available on Wednesday -->
+                <day>Friday</day> <!-- Available on Friday -->
+            </days>
+        </ScheduleDays>
+
+        <!-- Option for a random passenger to join via QR code or app -->
+        <RandomPassengerOption>
+            <enable>true</enable> <!-- Whether random passengers can join -->
+            <verificationMethod>QR Code</verificationMethod> <!-- Verification method for random passengers -->
+        </RandomPassengerOption>
+
+    </ServiceDelivery>
+
+</PublicationDelivery>
